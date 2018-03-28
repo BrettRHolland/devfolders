@@ -10,7 +10,7 @@ class FoldersContainer extends Component {
   }
 
   componentDidMount() {
-    fetch('http://localhost:3000/api/v1/folders', {credentials: 'same-origin'}).then(response => {
+    fetch('/api/v1/folders', {credentials: 'same-origin'}).then(response => {
       if (response.ok) {
         return response;
       } else {
