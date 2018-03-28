@@ -1,0 +1,104 @@
+.card {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  min-width: 0;
+  word-wrap: break-word;
+  background-color: #fff;
+  background-clip: border-box;
+  border: none;
+  border-radius: 0;
+}
+
+.folder {
+    position: relative;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+
+    width: 100%;
+    min-height: 10rem;
+    display: inline-block;
+    font-size: 1.5rem;
+    font-weight: 700;
+    position: relative;
+    border-radius: 0 3px 3px 3px;
+    margin-bottom: 2rem;
+    margin-top: 10%;
+  }
+
+  .folder:before {
+    content: '';
+    width: 50%;
+    height: 10%;
+    border-radius: 0 1.25rem 0 0;
+    position: absolute;
+    top: -10%;
+    left: 0;
+  }
+
+.folder-name {
+  display: flex;
+  justify-content: center;
+  align-items: center; 
+  width: 100%;
+  height: 100%; 
+}
+
+.default {
+  background-color: #ebeaea;
+  color: #615b5b;
+  height: 100%;
+}
+
+.default:before {
+  background-color: #ebeaea;
+}
+
+.red {
+  background-color: #fdf3f2;
+  color: #e74b3c;
+  font-weight: 700;
+  height: 100%;
+}
+
+.red:before {
+  background-color: #fdf3f2;
+}
+
+.blue {
+  background-color: #c9e2f2;
+  color: #3088bf;
+  height: 100%;
+}
+
+.blue:before {
+  background-color: #c9e2f2;
+}
+
+.green {
+  background-color: #b7f3e2;
+  color: #1fbf92;
+  height: 100%;
+}
+
+.green:before {
+  background-color: #b7f3e2;
+}
+
+.folder-link {
+  width: 100%;
+}
+
+

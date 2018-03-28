@@ -1,5 +1,5 @@
 FactoryBot.define do
-  factory :board do
+  factory :folder do
     user_id 1
     topic "MyString"
     color "MyString"

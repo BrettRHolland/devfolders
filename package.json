@@ -2,7 +2,7 @@
   "name": "devfolders",
   "private": true,
   "engines": {
-    "node": ">=6.0.0",
+    "node": ">=9.0.0",
     "yarn": ">=0.25.2"
   },
   "dependencies": {
@@ -11,6 +11,7 @@
     "prop-types": "^15.6.1",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
+    "react-router": "~3.2.0",
     "react_ujs": "^2.4.4"
   },
   "devDependencies": {

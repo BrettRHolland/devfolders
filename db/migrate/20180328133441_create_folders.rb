@@ -1,6 +1,6 @@
-class CreateBoards < ActiveRecord::Migration[5.1]
+class CreateFolders < ActiveRecord::Migration[5.1]
   def change
-    create_table :boards do |t|
+    create_table :folders do |t|
       t.integer :user_id, null: false
       t.string :topic, null: false
       t.string :color, default: 'default'

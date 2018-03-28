@@ -1,7 +1,14 @@
 Rails.application.routes.draw do
-  resources :boards
-  get 'home/index'
+	devise_for :users
+	root 'folders#index'
 
-  devise_for :users
-  root to: 'home#index'
+	resources :users do
+		resources :folders
+	end
+
+	namespace :api do
+		namespace :v1 do
+			resources :folders
+		end
+	end
 end
