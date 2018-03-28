@@ -8,9 +8,20 @@ class Api::V1::FoldersController < ApplicationController
     render json: {folders: @folders, user: @user}
   end
 
+  def create
+    @user = User.find(current_user.id)
+    @folder = Folder.new(folder_params)
+    @folder.user = @user
+
+    if @folder.save
+      render json: { folder: @folder }
+    end
+
+  end
+
   private
 
-  def board_params
+  def folder_params
     params.require(:folder).permit(:topic, :color)
   end
 end

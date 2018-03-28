@@ -1,3 +1,46 @@
+.topbar {
+  border-bottom: 1px solid #ebeaea;
+  color: #615b5b;
+    padding: 0.45rem 0;
+
+}
+
+.topbar i {
+  font-size: 1.75rem; 
+  padding-top: 0.2rem;
+}
+
+.logo {
+  color: #e74b3c;
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.secondarybar {
+  border-bottom: 1px solid #ebeaea;
+  padding: 0.75rem 0;
+}
+
+.secondarybar i {
+color: #e74b3c;
+  font-size: 1.75rem; 
+  padding-top: 0.1rem;
+}
+
+
+.search {
+  display: block;
+  width: 100%;
+  padding: 0.2rem 0.75rem;
+  font-size: 1rem;
+  color: #615b5b;
+  background-color: #ebeaea;
+  background-clip: padding-box;
+  border: none;
+  border-radius: 0.125rem;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
 .card {
   position: relative;
   display: -webkit-box;
@@ -28,7 +71,7 @@
     word-wrap: break-word;
 
     width: 100%;
-    min-height: 10rem;
+    min-height: 7rem;
     display: inline-block;
     font-size: 1.5rem;
     font-weight: 700;
