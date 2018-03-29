@@ -6,7 +6,7 @@ class FolderFormContainer extends Component {
     super(props)
     this.state = {
       topic: '',
-      color: '',
+      color: 'default',
       errors: {}
     }
     this.handleTopicChange = this.handleTopicChange.bind(this);
@@ -17,15 +17,15 @@ class FolderFormContainer extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.addNewFolder = this.addNewFolder.bind(this);
   }
-  
+
   handleTopicChange(event) {
     this.setState({topic: event.target.value})
   }
-  
+
   handleColorChange(event) {
     this.setState({color: event.target.value})
   }
-  
+
   validateTopic(topic) {
     if (topic === '' || topic === ' ') {
       let newError = { topic: 'Topic may not be blank.' }
@@ -38,7 +38,7 @@ class FolderFormContainer extends Component {
       return true
     }
   }
-  
+
   validateColor(color) {
     if (color === '' || color === ' ') {
       let newError = { color: 'Color may not be blank.' }
@@ -51,12 +51,12 @@ class FolderFormContainer extends Component {
       return true
     }
   }
-  
+
   handleClear(event) {
     event.preventDefault();
     this.setState({topic: '', color: ''})
   }
-  
+
   handleSubmit(event) {
     event.preventDefault();
     if (
@@ -68,7 +68,7 @@ class FolderFormContainer extends Component {
         topic: this.state.topic,
         color: this.state.color
       }
-      
+
       this.addNewFolder(formPayload)
       this.handleClear(event);
     }
@@ -96,8 +96,8 @@ class FolderFormContainer extends Component {
     .then(response => response.json())
     .then(body => browserHistory.push(`/`))
     .catch(error => console.error(`Error in fetch: ${error.message}`));
-  } 
-  
+  }
+
   render() {
     let errorDiv;
     let errorItems;
@@ -109,10 +109,12 @@ class FolderFormContainer extends Component {
     }
     return(
       <div className="container mt-5">
-      <h3>Add a trip</h3>
+      <div className="row justify-content-center">
+      <div className="col-lg-6 col-md-8 col-sm-12">
+      <h3>Add a folder</h3>
       <form onSubmit={this.handleSubmit}>
         {errorDiv}
-        
+
         <div className="form-group">
 		    <label>Topic</label>
 		    <input type="text" name="topic" className="form-control" onChange={this.handleTopicChange} />
@@ -120,18 +122,20 @@ class FolderFormContainer extends Component {
         <div className="form-group">
 		    <label>Color</label>
 		    <select value={this.state.color} className="form-control" onChange={this.handleColorChange}>
-		      <option value="gray">Gray</option>
-		      <option value="blue">Blue</option>
+		      <option value="default">Gray</option>
+		      <option value="blue" className="blue">Blue</option>
 		      <option value="red">Red</option>
 		      <option value="green">Green</option>
 		    </select>
 		  </div>
-       
+
         <div className="button-group">
           <button className="btn btn-light mr-3" onClick={this.handleClear}>Clear</button>
           <button className="btn btn-primary" type="submit" value="Submit">Submit</button>
         </div>
       </form>
+    </div>
+    </div>
     </div>
     )
   }

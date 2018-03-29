@@ -11,33 +11,31 @@
 </head>
 
 <body>
-<% if current_user %>
-<header class="mb-5">
-<div class="topbar">
+<% if user_signed_in? %>
+<header>
 	<div class="container">
 		<div class="row align-items-center">
 			<div class="col-md-auto"><span class="logo">DEVFOLDERS</span></div>
 			<div class="col">
 					<input type="text" class="form-control search" placeholder="Search...">
 			</div>
-			<div class="col-md-auto"><i class="fas fa-user-circle align-middle"></i></div>
-		</div>
-	</div>
-</div>
+			<div class="col-md-auto">
 
 
-<div class="secondarybar">
-	<div class="container">
-		<div class="row align-items-center">
- 			<!-- <div class="col-md-auto"><%= image_tag("profile.jpg", :class => "rounded-circle") %></div> -->
- 						<div class="col-md-auto"></div>
-			<div class="col">
-					
+				<div class="dropdown dropleft">
+					<i class="fas fa-user-circle align-middle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
+				  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+				    <%= link_to('My Account', edit_user_registration_path, class: "dropdown-item") %>
+				    <%= link_to "Sign out", destroy_user_session_path, :method => :delete, class: "dropdown-item" %>
+				  </div>
+				</div>
+
+
+
 			</div>
-			<div class="col-md-auto"><i class="fas fa-plus-circle"></i></div>
 		</div>
 	</div>
-</div>
+
 </header>
 <% end -%>
 

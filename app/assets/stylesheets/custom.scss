@@ -1,12 +1,12 @@
-.topbar {
+header {
   border-bottom: 1px solid #ebeaea;
   color: #615b5b;
-    padding: 0.45rem 0;
-
+  padding: 0.5rem 0;
 }
 
-.topbar i {
-  font-size: 1.75rem; 
+header i {
+  cursor: pointer;
+  font-size: 1.75rem;
   padding-top: 0.2rem;
 }
 
@@ -22,11 +22,19 @@
 }
 
 .secondarybar i {
-color: #e74b3c;
-  font-size: 1.75rem; 
+  color: #ebeaea;
+  cursor: pointer;
+  font-size: 1.75rem;
   padding-top: 0.1rem;
 }
 
+.secondarybar i:hover {
+  color: #615b5b;
+}
+
+.secondarybar .new {
+  color: #e74b3c;
+}
 
 .search {
   display: block;
@@ -59,44 +67,43 @@ color: #e74b3c;
 }
 
 .folder {
-    position: relative;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-    -ms-flex-direction: column;
-    flex-direction: column;
-    min-width: 0;
-    word-wrap: break-word;
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  min-width: 0;
+  word-wrap: break-word;
+  width: 100%;
+  min-height: 7rem;
+  display: inline-block;
+  font-size: 1.5rem;
+  font-weight: 700;
+  position: relative;
+  border-radius: 0 3px 3px 3px;
+  margin-bottom: 2rem;
+  margin-top: 10%;
+}
 
-    width: 100%;
-    min-height: 7rem;
-    display: inline-block;
-    font-size: 1.5rem;
-    font-weight: 700;
-    position: relative;
-    border-radius: 0 3px 3px 3px;
-    margin-bottom: 2rem;
-    margin-top: 10%;
-  }
-
-  .folder:before {
-    content: '';
-    width: 50%;
-    height: 10%;
-    border-radius: 0 1.25rem 0 0;
-    position: absolute;
-    top: -10%;
-    left: 0;
-  }
+.folder:before {
+  content: '';
+  width: 50%;
+  height: 10%;
+  border-radius: 0 1.25rem 0 0;
+  position: absolute;
+  top: -10%;
+  left: 0;
+}
 
 .folder-name {
   display: flex;
   justify-content: center;
-  align-items: center; 
+  align-items: center;
   width: 100%;
-  height: 100%; 
+  height: 100%;
 }
 
 .default {
@@ -112,7 +119,7 @@ color: #e74b3c;
 .red {
   background-color: #fdf3f2;
   color: #e74b3c;
-  font-weight: 700;
+  font-weight: 600;
   height: 100%;
 }
 
@@ -123,6 +130,7 @@ color: #e74b3c;
 .blue {
   background-color: #c9e2f2;
   color: #3088bf;
+  font-weight: 600;
   height: 100%;
 }
 
@@ -133,6 +141,7 @@ color: #e74b3c;
 .green {
   background-color: #b7f3e2;
   color: #1fbf92;
+  font-weight: 600;
   height: 100%;
 }
 
@@ -143,5 +152,3 @@ color: #e74b3c;
 .folder-link {
   width: 100%;
 }
-
-
