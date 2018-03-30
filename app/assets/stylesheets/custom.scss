@@ -1,3 +1,12 @@
+h1,
+h2,
+h3,
+h4,
+h5 {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+}
+
 header {
   border-bottom: 1px solid #ebeaea;
   color: #615b5b;
@@ -14,6 +23,11 @@ header i {
   color: #e74b3c;
   font-size: 1.25rem;
   font-weight: 700;
+}
+
+a.logo:hover {
+  color: #615b5b;
+  text-decoration: none;
 }
 
 .secondarybar {
@@ -66,6 +80,16 @@ header i {
   border-radius: 0;
 }
 
+.material-note {
+  background-color: #ebeaea;
+  color: #615b5b;
+}
+
+.material-video {
+  background-color: #ebeaea;
+  color: #615b5b;
+}
+
 .folder {
   position: relative;
   display: -webkit-box;
@@ -109,6 +133,7 @@ header i {
 .default {
   background-color: #ebeaea;
   color: #615b5b;
+  font-weight: 600;
   height: 100%;
 }
 
@@ -151,4 +176,81 @@ header i {
 
 .folder-link {
   width: 100%;
+}
+
+.video-container {
+  position: relative;
+  padding-bottom: 56.25%;
+  padding-top: 30px;
+  height: 0;
+  overflow: hidden;
+}
+
+.video-container embed,
+.video-container iframe,
+.video-container object {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.secondarybar a {
+  color: #615b5b;
+  cursor: pointer;
+}
+
+.nav-link.disabled {
+  color: #ebeaea;
+}
+
+.nav-pills .nav-link {
+  border-radius: 0.1rem;
+}
+
+.nav-pills .nav-link.active,
+.nav-pills .show > .nav-link {
+  color: #615b5b;
+  background-color: #ebeaea;
+}
+
+.note {
+  position: relative;
+  min-height: 20rem;
+  width: 100%;
+  padding: 1em 1.5em;
+  margin: 0 auto 2rem 0;
+  color: #f1c90b;
+  background: #fdf4cb;
+  overflow: hidden;
+}
+
+.note:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  border-width: 0 16px 16px 0;
+  border-style: solid;
+  border-color: #fff #fff #f1c90b #f1c90b;
+  background: #f1c90b;
+  // -webkit-box-shadow: 0 1px 1px rgba(0,0,0,0.3), -1px 1px 1px rgba(0,0,0,0.2);
+  // -moz-box-shadow: 0 1px 1px rgba(0,0,0,0.3), -1px 1px 1px rgba(0,0,0,0.2);
+  // box-shadow: 0 1px 1px rgba(0,0,0,0.3), -1px 1px 1px rgba(0,0,0,0.2);
+  /* Firefox 3.0 damage limitation */
+  display: block;
+  width: 0;
+}
+
+.note.rounded {
+  -moz-border-radius: 5px 0 5px 5px;
+  border-radius: 5px 0 5px 5px;
+}
+
+.note.rounded:before {
+  border-width: 8px;
+  border-color: #fff #fff transparent transparent;
+  -moz-border-radius: 0 0 0 5px;
+  border-radius: 0 0 0 5px;
 }

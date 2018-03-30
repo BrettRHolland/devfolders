@@ -47,26 +47,26 @@ class FoldersContainer extends Component {
       arrangeIcon = 'fas fa-list'
     }
 
-    let renderFolders = folders.map(board => {
+    let renderFolders = folders.map(folder => {
       if(arrange=='grid') {
         return (
 
           <FolderTile
-          key={board.id}
-          id={board.id}
-          topic={board.topic}
-          color={board.color}
+          key={folder.id}
+          id={folder.id}
+          topic={folder.topic}
+          color={folder.color}
           />
         )
       }
       if(arrange=='list') {
         return (
           <FolderListItem
-          key={board.id}
-          id={board.id}
-          topic={board.topic}
-          color={board.color}
-          updated={board.updated_at}
+          key={folder.id}
+          id={folder.id}
+          topic={folder.topic}
+          color={folder.color}
+          updated={folder.updated_at}
           />
         )
       }
@@ -75,7 +75,7 @@ class FoldersContainer extends Component {
     return (
       <div>
       <div className="secondarybar mb-5">
-      <div className="container">
+      <div className="container-fluid">
       <div className="row align-items-center">
       <div className="col-md-auto"></div>
       <div className="col">
@@ -86,7 +86,7 @@ class FoldersContainer extends Component {
       </div>
       </div>
       </div>
-      <div className="container">
+      <div className="container-fluid">
       <div className="row">
       {renderFolders}
       </div>

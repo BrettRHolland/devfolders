@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  resources :snippets
+  resources :notes
+  resources :videos
+  resources :materials
 	devise_for :users
 	root 'folders#index'
 

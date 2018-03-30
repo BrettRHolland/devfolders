@@ -1,44 +1,43 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Devfolders</title>
-	<%= csrf_meta_tags %>
-	<link href="https://fonts.googleapis.com/css?family=Poppins:400,600,700" rel="stylesheet">
-	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.9/css/all.css" integrity="sha384-5SOiIsAziJl6AWe0HWRKTXlfcSHKmYV4RBF18PPJ173Kzn7jzMyFuTtk8JA7QQG1" crossorigin="anonymous">
-	<%= stylesheet_link_tag    'application', media: 'all' %>
-	<%= javascript_include_tag 'application' %>
-	<%= javascript_pack_tag 'application' %>
-</head>
+  <head>
+    <title>Devfolders</title>
+    <%= csrf_meta_tags %>
+    <link href="https://fonts.googleapis.com/css?family=Poppins:400,600,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.9/css/all.css" integrity="sha384-5SOiIsAziJl6AWe0HWRKTXlfcSHKmYV4RBF18PPJ173Kzn7jzMyFuTtk8JA7QQG1" crossorigin="anonymous">
+    <%= stylesheet_link_tag 'application', media: 'all' %>
+    <%= javascript_include_tag 'application' %>
+    <%= javascript_pack_tag 'application' %>
+  </head>
 
-<body>
-<% if user_signed_in? %>
-<header>
-	<div class="container">
-		<div class="row align-items-center">
-			<div class="col-md-auto"><span class="logo">DEVFOLDERS</span></div>
-			<div class="col">
-					<input type="text" class="form-control search" placeholder="Search...">
-			</div>
-			<div class="col-md-auto">
+  <body>
+    <% if user_signed_in? %>
+      <header>
+        <div class="container-fluid">
+          <div class="row align-items-center">
+            <div class="col-md-auto">
+              <%= link_to('DEVFOLDERS', root_path, class: "logo") %>
+            </div>
+            <div class="col">
+              <input type="text" class="form-control search" placeholder="Search...">
+            </div>
+            <div class="col-md-auto">
 
+              <div class="dropdown dropleft">
+                <i class="fas fa-user-circle align-middle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                  <%= link_to('My Account', edit_user_registration_path, class: "dropdown-item") %>
+                  <%= link_to "Sign out", destroy_user_session_path, :method => :delete, class: "dropdown-item" %>
+                </div>
+              </div>
 
-				<div class="dropdown dropleft">
-					<i class="fas fa-user-circle align-middle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
-				  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-				    <%= link_to('My Account', edit_user_registration_path, class: "dropdown-item") %>
-				    <%= link_to "Sign out", destroy_user_session_path, :method => :delete, class: "dropdown-item" %>
-				  </div>
-				</div>
+            </div>
+          </div>
+        </div>
 
+      </header>
+    <% end -%>
 
-
-			</div>
-		</div>
-	</div>
-
-</header>
-<% end -%>
-
-  <%= yield %>
-</body>
+    <%= yield %>
+  </body>
 </html>
