@@ -1,16 +1,20 @@
 import React, {Component} from 'react';
 import FolderTile from './FolderTile';
 import FolderListItem from './FolderListItem';
-import { Link } from 'react-router'
+import { Link } from 'react-router';
+import {browserHistory} from 'react-router';
 
 class FoldersContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
       folders: [],
-      arrange: 'grid'
+      arrange: 'grid',
+      view: ''
     }
     this.handleArrangeChange = this.handleArrangeChange.bind(this);
+    this.handleViewChange = this.handleViewChange.bind(this);
+    this.handleFolderDelete = this.handleFolderDelete.bind(this);
   }
 
   componentDidMount() {
@@ -37,17 +41,51 @@ class FoldersContainer extends Component {
     }
   }
 
+  handleViewChange(e) {
+    this.setState({view: e.target.id})
+  }
+
+  handleFolderDelete(folder_id) {
+   fetch(`/api/v1/folders/${folder_id}`, {
+     method: 'DELETE',
+        credentials: 'same-origin',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        }
+      })
+   .then(response => {
+     if (response.ok) {
+       return response;
+     } else {
+       let errorMessage = `${response.status} (${response.statusText})`,
+       error = new Error(errorMessage);
+       throw(error);
+     }
+   })
+   .then(response => response.json())
+   .then(body => {
+      this.setState({folders: body.folders});
+    })
+    .catch(error => console.error(`Error in fetch: ${error.message}`));
+  }
+
+
   render() {
+    let viewClass = 'nav-link'
+    let allClass = 'nav-link active'
+    let otherClass = viewClass
     let folders = this.state.folders
     let arrange = this.state.arrange
     let arrangeIcon = 'grid'
     if (arrange=='grid') {
-      arrangeIcon = 'fas fa-th'
-    } else {
       arrangeIcon = 'fas fa-list'
+    } else {
+      arrangeIcon = 'fas fa-th'
     }
-
+    
     let renderFolders = folders.map(folder => {
+      let handleDelete =() =>{ this.handleFolderDelete(folder.id) }
       if(arrange=='grid') {
         return (
 
@@ -56,6 +94,7 @@ class FoldersContainer extends Component {
           id={folder.id}
           topic={folder.topic}
           color={folder.color}
+          handleDelete={handleDelete}
           />
         )
       }
@@ -67,6 +106,7 @@ class FoldersContainer extends Component {
           topic={folder.topic}
           color={folder.color}
           updated={folder.updated_at}
+          handleDelete={handleDelete}
           />
         )
       }
@@ -74,23 +114,43 @@ class FoldersContainer extends Component {
 
     return (
       <div>
-      <div className="secondarybar mb-5">
-      <div className="container-fluid">
-      <div className="row align-items-center">
-      <div className="col-md-auto"></div>
-      <div className="col">
-
-      </div>
-      <div className="col-md-auto"><i className={arrangeIcon} onClick={this.handleArrangeChange}></i></div>
-      <div className="col-md-auto"><Link to={`/folders/new`}><i className="fas fa-plus-circle new"></i></Link></div>
-      </div>
-      </div>
-      </div>
-      <div className="container-fluid">
-      <div className="row">
-      {renderFolders}
-      </div>
-      </div>
+        {/* Secondary Bar */}
+        <div className="secondarybar">
+          <div className="container">
+            <div className="row align-items-center">
+              <div className="col-md-auto">
+                <ul className="nav nav-tabs">
+                  <li className="nav-item">
+                    <a className={allClass} id="all" onClick={this.handleViewChange}><i className="far fa-circle text-default"></i></a>
+                  </li>
+                  <li className="nav-item">
+                    <a className={otherClass} id="notes" onClick={this.handleViewChange}><i className="fas fa-circle text-default"></i></a>
+                  </li>
+                  <li className="nav-item">
+                    <a className={otherClass} id="notes" onClick={this.handleViewChange}><i className="fas fa-circle text-orange"></i></a>
+                  </li>
+                  <li className="nav-item">
+                    <a className={otherClass} id="videos" onClick={this.handleViewChange}><i className="fas fa-circle text-red"></i></a>
+                  </li>
+                  <li className="nav-item">
+                    <a className={otherClass} id="snippets" onClick={this.handleViewChange}><i className="fas fa-circle text-green"></i></a>
+                  </li>
+                </ul>
+              </div>
+              <div className="col"></div>
+              <div className="col-md-auto"><i className={arrangeIcon} onClick={this.handleArrangeChange}></i></div>
+              <div className="col-md-auto">
+                <Link to={`/folders/new`}><i className="fas fa-plus-circle new"></i></Link>
+              </div>
+            </div>
+          </div>
+        </div>
+      {/* Folders */}
+        <div className="container">
+          <div className="row">
+            {renderFolders}
+          </div>
+        </div>
       </div>
     )
   }

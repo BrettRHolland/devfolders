@@ -3,16 +3,19 @@ import { Link } from 'react-router'
 
 const Snippet = (props) => {
   return(
-    <div className="col-sm-3">
-      <div className="card material-video">
-        <div className="card-body">
-          <h5 className="card-title">{props.title}</h5>
-          <p className="card-text">{props.content}</p>
-        </div>
+    <div className="material blue">
+      <div className="material-header">{props.title}</div>
+      <div className="material-body">
+        <p className="material-text">{props.content}</p>
+      </div>
+      <div className="material-footer text-right">
+        <i className="fas fa-pencil-alt"></i><i className="fas fa-trash-alt"></i>
       </div>
     </div>
-
   )
 }
 
 export default Snippet;
+
+
+

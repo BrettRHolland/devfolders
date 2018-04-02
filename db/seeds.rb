@@ -12,10 +12,14 @@ u2 = User.create(first_name: 'Jim', last_name: 'Smith', email: 'brett.holland+ji
 
 f1 = Folder.create(user_id: u1.id, topic: 'Ruby', color: 'red')
 f2 = Folder.create(user_id: u1.id, topic: 'JavaScript', color: 'blue')
-f3 = Folder.create(user_id: u1.id, topic: 'React')
+f3 = Folder.create(user_id: u1.id, topic: 'React', color: 'blue')
 
-f4 = Folder.create(user_id: u2.id, topic: 'Rails')
-f5 = Folder.create(user_id: u2.id, topic: 'Sinatra', color: 'green')
+f4 = Folder.create(user_id: u2.id, topic: 'Rails', color: 'red')
+f5 = Folder.create(user_id: u2.id, topic: 'Sinatra', color: 'red')
+
+f6 = Folder.create(user_id: u1.id, topic: 'Sinatra', color: 'red')
+f7 = Folder.create(user_id: u1.id, topic: 'Postgres', color: 'blue')
+f8 = Folder.create(user_id: u1.id, topic: 'Search Algorithms', color: 'gray')
 
 v1 = Video.create(folder_id: f1.id, title: Faker::Book.title, youtube: 'FBxVN7U1Qsk')
 v1 = Video.create(folder_id: f1.id, title: Faker::Book.title, youtube: 'aiXNKHKWlmY')
@@ -31,7 +35,7 @@ s1 = Snippet.create(folder_id: f1.id, title: 'Test Snippet', content: "<html><p>
   )
 end
 
-7.times do |index|
+4.times do |index|
   Note.create(
     folder_id: f1.id,
     title: Faker::Book.title,

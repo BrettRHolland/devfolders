@@ -27,6 +27,16 @@ class Api::V1::FoldersController < ApplicationController
 
   end
 
+  def destroy
+    @user = User.find(current_user.id)
+    @deleted_folder = Folder.find(params[:id])
+    @deleted_folder.destroy
+    @folders = Folder.where(user_id: current_user.id)
+    @user = User.find(current_user.id)
+    render json: {folders: @folders, user: @user}
+
+  end
+
   private
 
   def folder_params

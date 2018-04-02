@@ -3,16 +3,18 @@ import { Link } from 'react-router'
 
 const Note = (props) => {
   return(
-    <div className="col-sm-3">
-      <div className="note">
-        <div className="card-body">
-          <h5 className="card-title">{props.title}</h5>
-          <p className="card-text">{props.content}</p>
-        </div>
+    <div className="material yellow">
+      <div className="material-header">{props.title}</div>
+      <div className="material-body">
+        <p className="material-text">{props.content}</p>
+      </div>
+      <div className="material-footer text-right">
+        <i className="fas fa-pencil-alt"></i><i className="fas fa-trash-alt"></i>
       </div>
     </div>
-
   )
 }
 
 export default Note;
+
+

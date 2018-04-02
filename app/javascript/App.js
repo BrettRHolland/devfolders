@@ -3,6 +3,7 @@ import { Router, browserHistory, Route, IndexRoute } from 'react-router';
 import FoldersContainer from './components/FoldersContainer';
 import FolderFormContainer from './components/FolderFormContainer';
 import MaterialsContainer from './components/MaterialsContainer';
+require('dotenv').config()
 
 const App = props => {
   return(

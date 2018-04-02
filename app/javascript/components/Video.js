@@ -4,16 +4,20 @@ import { Link } from 'react-router'
 const Video = (props) => {
   let videoLink = `https://www.youtube.com/embed/${props.youtube}?rel=0&amp;showinfo=0`
   return(
-    <div className="col-sm-6 mb-3">
-    <div className="card material-video">
-    <div className="card-body">
-    <h5 className="card-title">{props.title}</h5>
-    <div className="video-container"><iframe width="560" height="315" src={videoLink} frameBorder="0" allow="autoplay; encrypted-media" allowFullScreen></iframe></div>
+    <div className="material gray">
+      <div className="material-header">{props.title}</div>
+      <div className="material-body">
+        <div className="embed-responsive embed-responsive-16by9">
+            <iframe className="embed-responsive-item" src={videoLink} allowFullScreen></iframe>
+          </div>
+      </div>
+      <div className="material-footer text-right">
+        <i className="fas fa-pencil-alt"></i><i className="fas fa-trash-alt"></i>
+      </div>
     </div>
-    </div>
-    </div>
-
   )
 }
 
 export default Video;
+
+

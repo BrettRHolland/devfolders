@@ -1,14 +1,19 @@
 import React, { Component } from 'react';
 import {browserHistory} from 'react-router';
 
-class FolderFormContainer extends Component {
+class MaterialFormContainer extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      topic: '',
-      color: 'default',
-      errors: {}
+      category: ''
+      folder_id: ''
+      title: ''
+      content: ''
+      color: ''
+      youtube: ''
+      notes: ''
     }
+
     this.handleTopicChange = this.handleTopicChange.bind(this);
     this.handleColorChange = this.handleColorChange.bind(this);
     this.validateTopic = this.validateTopic.bind(this);
@@ -73,6 +78,10 @@ class FolderFormContainer extends Component {
     }
   }
 
+  handleCategorySelection(event) {
+    this.setState({category: event.target.value})
+  }
+
   addNewFolder(submission) {
     fetch(`/api/v1/folders/`, {
       credentials: 'same-origin',
@@ -98,6 +107,11 @@ class FolderFormContainer extends Component {
   }
 
   render() {
+
+    if (this.state.category == 'note') {
+      let form = 
+    }
+
     let errorDiv;
     let errorItems;
     if (Object.keys(this.state.errors).length > 0) {
@@ -142,4 +156,4 @@ class FolderFormContainer extends Component {
   }
 }
 
-export default FolderFormContainer;
+export default MaterialFormContainer;
