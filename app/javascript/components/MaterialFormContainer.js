@@ -1,158 +1,197 @@
-import React, { Component } from 'react';
-import {browserHistory} from 'react-router';
+import React, { Component } from "react";
+import { browserHistory } from "react-router";
+import NoteForm from "./NoteForm";
+import SnippetForm from "./SnippetForm";
+import VideoForm from "./VideoForm";
 
 class MaterialFormContainer extends Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
-      category: ''
-      folder_id: ''
-      title: ''
-      content: ''
-      color: ''
-      youtube: ''
-      notes: ''
-    }
+      category: "",
+      folder_id: "",
+      title: "",
+      content: "",
+      youtube: "",
+      notes: ""
+    };
 
-    this.handleTopicChange = this.handleTopicChange.bind(this);
-    this.handleColorChange = this.handleColorChange.bind(this);
-    this.validateTopic = this.validateTopic.bind(this);
-    this.validateColor= this.validateColor.bind(this);
+    this.handleCategorySelection = this.handleCategorySelection.bind(this);
+    this.handleTitleChange = this.handleTitleChange.bind(this);
+    this.handleContentChange = this.handleContentChange.bind(this);
+    this.handleYouTubeChange = this.handleYouTubeChange.bind(this);
     this.handleClear = this.handleClear.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.addNewFolder = this.addNewFolder.bind(this);
+    this.addNote = this.addNote.bind(this);
+    this.addSnippet = this.addSnippet.bind(this);
+    this.addVideo = this.addVideo.bind(this);
   }
 
-  handleTopicChange(event) {
-    this.setState({topic: event.target.value})
+  handleTitleChange(event) {
+    this.setState({ title: event.target.value });
   }
 
-  handleColorChange(event) {
-    this.setState({color: event.target.value})
+  handleContentChange(event) {
+    this.setState({ content: event.target.value });
   }
 
-  validateTopic(topic) {
-    if (topic === '' || topic === ' ') {
-      let newError = { topic: 'Topic may not be blank.' }
-      this.setState({ errors: Object.assign(this.state.errors, newError) })
-      return false
-    } else {
-      let errorState = this.state.errors
-      delete errorState.topic
-      this.setState({ errors: errorState })
-      return true
-    }
-  }
-
-  validateColor(color) {
-    if (color === '' || color === ' ') {
-      let newError = { color: 'Color may not be blank.' }
-      this.setState({ errors: Object.assign(this.state.errors, newError) })
-      return false
-    } else {
-      let errorState = this.state.errors
-      delete errorState.color
-      this.setState({ errors: errorState })
-      return true
-    }
+  handleYouTubeChange(event) {
+    this.setState({ youtube: event.target.value });
   }
 
   handleClear(event) {
     event.preventDefault();
-    this.setState({topic: '', color: ''})
+    this.setState({ title: "", content: "", youtube: "", notes: "" });
   }
 
   handleSubmit(event) {
     event.preventDefault();
-    if (
-      this.validateTopic(this.state.topic) &&
-      this.validateColor(this.state.color)
-    )
-    {
+    if (this.state.category == "note") {
       let formPayload = {
-        topic: this.state.topic,
-        color: this.state.color
-      }
-      this.addNewFolder(formPayload)
+        folder_id: this.props.params.id,
+        title: this.state.title,
+        content: this.state.content
+      };
+      this.addNote(formPayload);
+      this.handleClear(event);
+    } else if (this.state.category == "snippet") {
+      let formPayload = {
+        folder_id: this.props.params.id,
+        title: this.state.title,
+        content: this.state.content
+      };
+      this.addSnippet(formPayload);
+      this.handleClear(event);
+    } else if (this.state.category == "video") {
+      let formPayload = {
+        folder_id: this.props.params.id,
+        title: this.state.title,
+        youtube: this.state.youtube
+      };
+      this.addVideo(formPayload);
       this.handleClear(event);
     }
   }
 
   handleCategorySelection(event) {
-    this.setState({category: event.target.value})
+    this.setState({ category: event.target.value });
   }
 
-  addNewFolder(submission) {
-    fetch(`/api/v1/folders/`, {
-      credentials: 'same-origin',
-      method: 'POST',
+  addNote(submission) {
+    fetch(`/api/v1/folders/${submission.folder_id}/notes`, {
+      credentials: "same-origin",
+      method: "POST",
       body: JSON.stringify(submission),
-      headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json'
-      }
+      headers: { "Content-Type": "application/json" }
     })
-    .then(response => {
-      if (response.ok) {
-        return response;
-      } else {
-        let errorMessage = `${response.status} (${response.statusText})`,
-        error = new Error(errorMessage);
-        throw(error);
-      }
+      .then(response => {
+        if (response.ok) {
+          return response;
+        } else {
+          let errorMessage = `${response.status} (${response.statusText})`,
+            error = new Error(errorMessage);
+          throw error;
+        }
+      })
+      .then(response => response.json())
+      .then(body => browserHistory.push(`/folders/${submission.folder_id}`))
+      .catch(error => console.error(`Error in fetch: ${error.message}`));
+  }
+
+  addSnippet(submission) {
+    fetch(`/api/v1/folders/${submission.folder_id}/snippets`, {
+      credentials: "same-origin",
+      method: "POST",
+      body: JSON.stringify(submission),
+      headers: { "Content-Type": "application/json" }
     })
-    .then(response => response.json())
-    .then(body => browserHistory.push(`/`))
-    .catch(error => console.error(`Error in fetch: ${error.message}`));
+      .then(response => {
+        if (response.ok) {
+          return response;
+        } else {
+          let errorMessage = `${response.status} (${response.statusText})`,
+            error = new Error(errorMessage);
+          throw error;
+        }
+      })
+      .then(response => response.json())
+      .then(body => browserHistory.push(`/folders/${submission.folder_id}`))
+      .catch(error => console.error(`Error in fetch: ${error.message}`));
+  }
+
+  addVideo(submission) {
+    fetch(`/api/v1/folders/${submission.folder_id}/videos`, {
+      credentials: "same-origin",
+      method: "POST",
+      body: JSON.stringify(submission),
+      headers: { "Content-Type": "application/json" }
+    })
+      .then(response => {
+        if (response.ok) {
+          return response;
+        } else {
+          let errorMessage = `${response.status} (${response.statusText})`,
+            error = new Error(errorMessage);
+          throw error;
+        }
+      })
+      .then(response => response.json())
+      .then(body => browserHistory.push(`/folders/${submission.folder_id}`))
+      .catch(error => console.error(`Error in fetch: ${error.message}`));
   }
 
   render() {
-
-    if (this.state.category == 'note') {
-      let form = 
+    let category = this.state.category;
+    let formShow;
+    if (category == "note") {
+      formShow = (
+        <NoteForm
+          addNote={this.addNote}
+          handleTitleChange={this.handleTitleChange}
+          handleContentChange={this.handleContentChange}
+        />
+      );
+    } else if (category == "snippet") {
+      formShow = (
+        <SnippetForm
+          addSnippet={this.addSnippet}
+          handleTitleChange={this.handleTitleChange}
+          handleContentChange={this.handleContentChange}
+        />
+      );
+    } else if (category == "video") {
+      formShow = (
+        <VideoForm
+          addVideo={this.addVideo}
+          handleTitleChange={this.handleTitleChange}
+          handleYouTubeChange={this.handleYouTubeChange}
+        />
+      );
+    } else {
+      formShow = "";
     }
-
-    let errorDiv;
-    let errorItems;
-    if (Object.keys(this.state.errors).length > 0) {
-      errorItems = Object.values(this.state.errors).map(error => {
-        return(<span key={error}>{error} </span>)
-      })
-      errorDiv = <div className="alert red">{errorItems}</div>
-    }
-    return(
+    return (
       <div className="container margin-top">
-      <div className="row justify-content-center">
-      <div className="col-lg-8 col-md-10 col-sm-12">
-      <h3>Add a folder</h3>
-      <form onSubmit={this.handleSubmit}>
-        {errorDiv}
-
-        <div className="form-item">
-		    <label>Topic</label>
-		    <input type="text" name="topic" onChange={this.handleTopicChange} value={this.state.topic} />
-		  </div>
-
-        <div className="form-item">
-		    <label>Color</label>
-		    <select value={this.state.color} onChange={this.handleColorChange}>
-		      <option value="default">Gray</option>
-		      <option value="blue" className="blue">Blue</option>
-          <option value="green">Green</option>
-          <option value="orange">Orange</option>
-		      <option value="red">Red</option>		      
-		    </select>
-		  </div>
-
-        <div className="button-group">
-          <button className="button button-gray" onClick={this.handleClear}>Clear</button>
-          <button className="button button-red" type="submit" value="Submit">Submit</button>
+        <div className="row justify-content-center">
+          <div className="col-lg-8 col-md-10 col-sm-12">
+            <h3>Add a material</h3>
+            <form onSubmit={this.handleSubmit}>
+              <div className="form-item">
+                <select
+                  value={category}
+                  onChange={this.handleCategorySelection}>
+                  <option value="">What are you adding?</option>
+                  <option value="note">Note</option>
+                  <option value="video">Video</option>
+                  <option value="snippet">Snippet</option>
+                </select>
+              </div>
+              {formShow}
+            </form>
+          </div>
         </div>
-      </form>
-    </div>
-    </div>
-    </div>
-    )
+      </div>
+    );
   }
 }
 

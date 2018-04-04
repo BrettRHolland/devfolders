@@ -19,6 +19,13 @@ class Api::V1::VideosController < ApplicationController
     end
   end
 
+  def destroy
+    @deleted_video = Video.find(params[:id])
+    @deleted_video.destroy
+    @videos = Video.where(folder_id: params[:folder_id])
+    render json: {videos: @videos}
+  end
+
   private
 
   def video_params

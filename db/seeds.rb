@@ -27,7 +27,7 @@ v1 = Video.create(folder_id: f1.id, title: Faker::Book.title, youtube: 'MJUJ4wbF
 
 s1 = Snippet.create(folder_id: f1.id, title: 'Test Snippet', content: "<html><p>test</p></html>")
 
-3.times do |index|
+5.times do |index|
   Note.create(
     folder_id: f2.id,
     title: Faker::Book.title,
@@ -35,7 +35,7 @@ s1 = Snippet.create(folder_id: f1.id, title: 'Test Snippet', content: "<html><p>
   )
 end
 
-4.times do |index|
+5.times do |index|
   Note.create(
     folder_id: f1.id,
     title: Faker::Book.title,

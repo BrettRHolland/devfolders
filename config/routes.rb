@@ -1,19 +1,23 @@
 Rails.application.routes.draw do
-  resources :snippets
-  resources :notes
-  resources :videos
-  resources :materials
-	devise_for :users
-	root 'folders#index'
+  devise_for :users
+  root 'folders#index'
 
-	resources :users
-	resources :folders
+  resources :users
+  resources :folders do
+    resources :notes
+    resources :snippets
+    resources :videos
+  end
 
-	namespace :api do
-		namespace :v1 do
-			resources :folders do
-				resources :videos
-			end
-		end
-	end
+
+
+  namespace :api do
+    namespace :v1 do
+      resources :folders do
+        resources :videos
+        resources :notes
+        resources :snippets
+      end
+    end
+  end
 end

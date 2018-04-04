@@ -7,7 +7,6 @@
 @import url('folders.css');
 @import url('nav.css');
 
-
 /* base */
 
 html {
@@ -87,6 +86,7 @@ ol {
 }
 
 
+
 /* buttons */
 
 .button {
@@ -98,6 +98,21 @@ ol {
 	text-align: center;
 	cursor: pointer;
 	border: 0;
+	border-radius: 1px;
+}
+
+.app-search-button {
+	color: #fff;
+	background-color: var(--color-red);
+	position: relative;
+	display: inline-block;
+	padding: 0.625rem 1.875rem;
+	font-family: var(--font-family-normal);
+	font-weight: 600;
+	line-height: 1.6;
+	text-align: center;
+	cursor: pointer;
+	border: 1px solid var(--color-red);
 	border-radius: 1px;
 }
 
@@ -229,7 +244,6 @@ ol {
 	border-radius: 1px
 }
 
-
 .text-gray,
 .text-default {
 	color: var(--color-gray);
@@ -288,6 +302,7 @@ ol {
 
 
 
+
 /* forms */
 
 form {
@@ -297,7 +312,7 @@ form {
 }
 
 form .button {
-	margin: 1rem 0.5rem 0 0;
+	margin: 0;
 }
 
 fieldset {
@@ -404,16 +419,17 @@ select {
 	background-color: #fff;
 	border: 1px solid #d2cfcf;
 	border-radius: 0;
-	    -webkit-appearance: none;
-    -webkit-border-radius: 0px;
-    background-image: url("data:image/svg+xml;utf8,<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' width='24' height='24' viewBox='0 0 24 24'><path fill='#444' d='M7.406 7.828l4.594 4.594 4.594-4.594 1.406 1.406-6 6-6-6z'></path></svg>");
-    background-position: 100% 50%;
-    background-repeat: no-repeat;
+	-webkit-appearance: none;
+	-webkit-border-radius: 0px;
+	background-image: url("data:image/svg+xml;utf8,<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' width='24' height='24' viewBox='0 0 24 24'><path fill='#444' d='M7.406 7.828l4.594 4.594 4.594-4.594 1.406 1.406-6 6-6-6z'></path></svg>");
+	background-position: 100% 50%;
+	background-repeat: no-repeat;
 
 	height: 3rem;
 }
 
-select:hover, select:active {
+select:hover,
+select:active {
 	border-color: var(--color-gray-dark);
 	outline: 0;
 }
@@ -423,6 +439,7 @@ select:hover, select:active {
 	display: block;
 	margin-bottom: 1rem
 }
+
 
 
 /* text align */
@@ -438,6 +455,7 @@ select:hover, select:active {
 .text-center {
 	text-align: center !important;
 }
+
 
 
 /* embed videos */
@@ -619,10 +637,46 @@ header {
 	margin-top: 3rem;
 }
 
+.margin-top-small {
+	margin-top: 1rem;
+}
+
 .margin-bottom {
 	margin-bottom: 3rem;
 }
 
+.margin-bottom-small {
+	margin-bottom: 1rem;
+}
+
 .tertiarybar {
 	padding: 0;
+}
+
+.badge {
+	display: inline-block;
+	padding: 0.25em 0.35em;
+	font-size: 75%;
+	font-weight: 600;
+	line-height: 1;
+	text-align: center;
+	white-space: nowrap;
+	vertical-align: text-top;
+	border-radius: 0.25rem;
+}
+
+.badge:empty {
+	display: none;
+}
+
+.badge-primary {
+	color: var(--color-gray);
+	background-color: var(--color-gray-light);
+}
+
+.badge-primary[href]:hover,
+.badge-primary[href]:focus {
+	color: #fff;
+	text-decoration: none;
+	background-color: #0062cc;
 }

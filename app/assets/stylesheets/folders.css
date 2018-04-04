@@ -21,6 +21,10 @@
   border-top: 5px solid var(--color-green);
 }
 
+.folder.green:hover {
+  border-top: 5px solid var(--color-green-dark);
+}
+
 .folder.yellow {
   border-top: 5px solid var(--color-yellow);
 }
@@ -33,16 +37,28 @@
   border-top: 5px solid var(--color-blue-dark);
 }
 
-.folder.default {
+.folder.default, .folder.gray {
   border-top: 5px solid var(--color-gray);
+}
+
+.folder.default:hover, .folder.gray:hover {
+  border-top: 5px solid var(--color-gray-dark);
 }
 
 .folder.red {
   border-top: 5px solid var(--color-red);
 }
 
+.folder.red:hover {
+  border-top: 5px solid var(--color-red-dark);
+}
+
 .folder.orange {
   border-top: 5px solid var(--color-orange);
+}
+
+.folder.orange:hover {
+  border-top: 5px solid var(--color-orange-dark);
 }
 
 .folder > hr {
@@ -306,11 +322,23 @@
   color: var(--color-gray-dark);
 }
 
+.default .folder-body:hover {
+  color: var(--color-gray-dark);
+}
+
 .gray .folder-footer i:hover {
   color: var(--color-gray-dark);
 }
 
+.gray .folder-body:hover {
+  color: var(--color-gray-dark);
+}
+
 .green .folder-footer i:hover {
+  color: var(--color-green-dark);
+}
+
+.green .folder-body:hover {
   color: var(--color-green-dark);
 }
 
@@ -319,5 +347,9 @@
 }
 
 .red .folder-footer i:hover {
+  color: var(--color-red-dark);
+}
+
+.red .folder-body:hover {
   color: var(--color-red-dark);
 }
