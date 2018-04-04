@@ -1,6 +1,6 @@
 class Note < ApplicationRecord
-  belongs_to :folder
+	belongs_to :folder
 
-  validates :title, presence: true
+	validates :title, presence: true
 	validates :content, presence: true
 end
