@@ -1,11 +1,11 @@
-@import url('https://fonts.googleapis.com/css?family=Poppins:400,600,700');
-@import url('normalize.css');
+@import 'https://fonts.googleapis.com/css?family=Poppins:400,600,700';
+@import 'normalize.css';
 @import "devise";
-@import url('variables.css');
-@import url('grid.css');
-@import url('materials.css');
-@import url('folders.css');
-@import url('nav.css');
+@import 'variables.css';
+@import 'grid.css';
+@import 'materials.css';
+@import 'folders.css';
+@import 'nav.css';
 
 /* base */
 
