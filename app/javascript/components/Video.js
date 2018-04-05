@@ -4,7 +4,7 @@ import { Link } from "react-router";
 const Video = props => {
   let videoLink = `https://www.youtube.com/embed/${props.youtube}?rel=0&amp;showinfo=0`;
   return (
-    <div className="material gray">
+    <div className="material red">
       <div className="material-header">{props.title}</div>
       <div className="material-body">
         <div className="embed-responsive embed-responsive-16by9">

@@ -2,12 +2,10 @@ import React from "react";
 import { Link } from "react-router";
 
 const FolderTile = props => {
-  let cardClass = `folder ${props.color}`;
-  let linkClass = `tile-link text-${props.color}`
   return (
     <div className="col-sm-12 col-md-6 col-lg-4">
-      <div className={cardClass}>
-        <Link className={linkClass} to={`/folders/${props.id}`}>
+      <div className="folder">
+        <Link className="tile-link" to={`/folders/${props.id}`}>
           <div className="folder-body">
             <span className="folder-title">{props.topic}</span>
           </div>

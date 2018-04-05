@@ -9,80 +9,70 @@
   flex-direction: column;
   min-width: 0;
   word-wrap: break-word;
-  background-color: #fff;
+  background-color: #B5D8F6;
   background-clip: border-box;
+  border: 3px solid var(--color-blue-medium);
+  border-radius: 0.5rem;
+  margin-bottom: 2rem;
+  padding-top: 1rem;
+}
 
+.folder:hover {
+  background: #cfe4f7;
+}
+
+.folder:hover,
+.folder-body:hover {
+  border-color: var(--color-blue-dark);
+}
+
+.folder-body {
   border-top-left-radius: 0.5rem;
   border-top-right-radius: 0.5rem;
-  margin-bottom: 2rem;
+  border-top: 3px solid var(--color-blue-medium);
+  background-color: var(--color-blue-light);
 }
 
-.folder.green {
-  border-top: 5px solid var(--color-green);
+.folder-footer {
+  background-color: var(--color-blue-light);
+  color: #78B3E8;
 }
 
-.folder.green:hover {
-  border-top: 5px solid var(--color-green-dark);
+.folder-footer i:hover {
+  color: var(--color-blue-dark);
 }
 
-.folder.yellow {
-  border-top: 5px solid var(--color-yellow);
-}
-
-.folder.blue {
-  border-top: 5px solid var(--color-blue);
-}
-
-.folder.blue:hover {
-  border-top: 5px solid var(--color-blue-dark);
-}
-
-.folder.default, .folder.gray {
-  border-top: 5px solid var(--color-gray);
-}
-
-.folder.default:hover, .folder.gray:hover {
-  border-top: 5px solid var(--color-gray-dark);
-}
-
-.folder.red {
-  border-top: 5px solid var(--color-red);
-}
-
-.folder.red:hover {
-  border-top: 5px solid var(--color-red-dark);
-}
-
-.folder.orange {
-  border-top: 5px solid var(--color-orange);
-}
-
-.folder.orange:hover {
-  border-top: 5px solid var(--color-orange-dark);
-}
-
-.folder > hr {
+.folder>hr {
   margin-right: 0;
   margin-left: 0;
 }
 
-.folder > .list-group:first-child .list-group-item:first-child {
-  border-top-left-radius: 0.25rem;
-  border-top-right-radius: 0.25rem;
+.folder>.list-group:first-child .list-group-item:first-child {
+  border-top-left-radius: 0.5rem;
+  border-top-right-radius: 0.5rem;
 }
 
-.folder > .list-group:last-child .list-group-item:last-child {
-  border-bottom-right-radius: 0.25rem;
-  border-bottom-left-radius: 0.25rem;
+.folder>.list-group:last-child .list-group-item:last-child {
+  border-bottom-right-radius: 0.5rem;
+  border-bottom-left-radius: 0.5rem;
 }
 
 .folder-body {
   -webkit-box-flex: 1;
   -ms-flex: 1 1 auto;
   flex: 1 1 auto;
-  min-height: 12rem;
-  padding: 2rem;
+  min-height: 10.5rem;
+  padding: 3.5rem 2rem;
   text-align: center;
+}
+
+a .folder-body {
+  color: #78B3E8;
+  text-shadow: 0 -1px 0 #FFF;
+}
+
+a .folder-body:hover {
+  color: var(--color-blue-dark);
 }
 
 .folder-title {
@@ -106,7 +96,7 @@
   text-decoration: none;
 }
 
-.folder-link + .folder-link {
+.folder-link+.folder-link {
   margin-left: 1.25rem;
 }
 
@@ -119,7 +109,7 @@
 }
 
 .folder-header:first-child {
-  border-radius: calc(0.25rem - 1px) calc(0.25rem - 1px) 0 0;
+  border-radius: calc(0.5rem - 1px) calc(0.5rem - 1px) 0 0;
 }
 
 .folder-footer {
@@ -128,7 +118,7 @@
 }
 
 .folder-footer:last-child {
-  border-radius: 0 0 calc(0.25rem - 1px) calc(0.25rem - 1px);
+  border-radius: 0 0 calc(0.5rem - 1px) calc(0.5rem - 1px);
 }
 
 .folder-header-tabs {
@@ -183,19 +173,19 @@
 
 .folder-img {
   width: 100%;
-  border-radius: calc(0.25rem - 1px);
+  border-radius: calc(0.5rem - 1px);
 }
 
 .folder-img-top {
   width: 100%;
-  border-top-left-radius: calc(0.25rem - 1px);
-  border-top-right-radius: calc(0.25rem - 1px);
+  border-top-left-radius: calc(0.5rem - 1px);
+  border-top-right-radius: calc(0.5rem - 1px);
 }
 
 .folder-img-bottom {
   width: 100%;
-  border-bottom-right-radius: calc(0.25rem - 1px);
-  border-bottom-left-radius: calc(0.25rem - 1px);
+  border-bottom-right-radius: calc(0.5rem - 1px);
+  border-bottom-left-radius: calc(0.5rem - 1px);
 }
 
 .folder-deck {
@@ -222,7 +212,7 @@
   flex-direction: column;
 }
 
-.folder-group > .folder {
+.folder-group>.folder {
   margin-bottom: 15px;
 }
 
@@ -233,60 +223,60 @@
     -ms-flex-flow: row wrap;
     flex-flow: row wrap;
   }
-  .folder-group > .folder {
+  .folder-group>.folder {
     -webkit-box-flex: 1;
     -ms-flex: 1 0 0%;
     flex: 1 0 0%;
     margin-bottom: 0;
   }
-  .folder-group > .folder + .folder {
+  .folder-group>.folder+.folder {
     margin-left: 0;
     border-left: 0;
   }
-  .folder-group > .folder:first-child {
+  .folder-group>.folder:first-child {
     border-top-right-radius: 0;
     border-bottom-right-radius: 0;
   }
-  .folder-group > .folder:first-child .folder-img-top,
-  .folder-group > .folder:first-child .folder-header {
+  .folder-group>.folder:first-child .folder-img-top,
+  .folder-group>.folder:first-child .folder-header {
     border-top-right-radius: 0;
   }
-  .folder-group > .folder:first-child .folder-img-bottom,
-  .folder-group > .folder:first-child .folder-footer {
+  .folder-group>.folder:first-child .folder-img-bottom,
+  .folder-group>.folder:first-child .folder-footer {
     border-bottom-right-radius: 0;
   }
-  .folder-group > .folder:last-child {
+  .folder-group>.folder:last-child {
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
   }
-  .folder-group > .folder:last-child .folder-img-top,
-  .folder-group > .folder:last-child .folder-header {
+  .folder-group>.folder:last-child .folder-img-top,
+  .folder-group>.folder:last-child .folder-header {
     border-top-left-radius: 0;
   }
-  .folder-group > .folder:last-child .folder-img-bottom,
-  .folder-group > .folder:last-child .folder-footer {
+  .folder-group>.folder:last-child .folder-img-bottom,
+  .folder-group>.folder:last-child .folder-footer {
     border-bottom-left-radius: 0;
   }
-  .folder-group > .folder:only-child {
-    border-radius: 0.25rem;
+  .folder-group>.folder:only-child {
+    border-radius: 0.5rem;
   }
-  .folder-group > .folder:only-child .folder-img-top,
-  .folder-group > .folder:only-child .folder-header {
-    border-top-left-radius: 0.25rem;
-    border-top-right-radius: 0.25rem;
+  .folder-group>.folder:only-child .folder-img-top,
+  .folder-group>.folder:only-child .folder-header {
+    border-top-left-radius: 0.5rem;
+    border-top-right-radius: 0.5rem;
   }
-  .folder-group > .folder:only-child .folder-img-bottom,
-  .folder-group > .folder:only-child .folder-footer {
-    border-bottom-right-radius: 0.25rem;
-    border-bottom-left-radius: 0.25rem;
+  .folder-group>.folder:only-child .folder-img-bottom,
+  .folder-group>.folder:only-child .folder-footer {
+    border-bottom-right-radius: 0.5rem;
+    border-bottom-left-radius: 0.5rem;
   }
-  .folder-group > .folder:not(:first-child):not(:last-child):not(:only-child) {
+  .folder-group>.folder:not(:first-child):not(:last-child):not(:only-child) {
     border-radius: 0;
   }
-  .folder-group > .folder:not(:first-child):not(:last-child):not(:only-child) .folder-img-top,
-  .folder-group > .folder:not(:first-child):not(:last-child):not(:only-child) .folder-img-bottom,
-  .folder-group > .folder:not(:first-child):not(:last-child):not(:only-child) .folder-header,
-  .folder-group > .folder:not(:first-child):not(:last-child):not(:only-child) .folder-footer {
+  .folder-group>.folder:not(:first-child):not(:last-child):not(:only-child) .folder-img-top,
+  .folder-group>.folder:not(:first-child):not(:last-child):not(:only-child) .folder-img-bottom,
+  .folder-group>.folder:not(:first-child):not(:last-child):not(:only-child) .folder-header,
+  .folder-group>.folder:not(:first-child):not(:last-child):not(:only-child) .folder-footer {
     border-radius: 0;
   }
 }
@@ -308,48 +298,4 @@
     display: inline-block;
     width: 100%;
   }
-}
-
-
-
-
-
-.orange .folder-body:hover {
-  color: var(--color-orange-dark);
-}
-
-.default .folder-footer i:hover {
-  color: var(--color-gray-dark);
-}
-
-.default .folder-body:hover {
-  color: var(--color-gray-dark);
-}
-
-.gray .folder-footer i:hover {
-  color: var(--color-gray-dark);
-}
-
-.gray .folder-body:hover {
-  color: var(--color-gray-dark);
-}
-
-.green .folder-footer i:hover {
-  color: var(--color-green-dark);
-}
-
-.green .folder-body:hover {
-  color: var(--color-green-dark);
-}
-
-.blue .folder-body:hover {
-  color: var(--color-blue-dark);
-}
-
-.red .folder-footer i:hover {
-  color: var(--color-red-dark);
-}
-
-.red .folder-body:hover {
-  color: var(--color-red-dark);
 }

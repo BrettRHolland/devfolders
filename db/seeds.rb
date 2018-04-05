@@ -7,38 +7,56 @@ require 'faker'
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-u1 = User.create(first_name: 'Brett', last_name: 'Holland', email: 'brett.holland@gmail.com', password: 'testpw')
-u2 = User.create(first_name: 'Jim', last_name: 'Smith', email: 'brett.holland+jim@gmail.com', password: 'testpw')
+u1 = User.create(first_name: 'Jim', last_name: 'Smith', email: 'js@gmail.com', password: 'testpw')
 
-f1 = Folder.create(user_id: u1.id, topic: 'Ruby', color: 'red')
-f2 = Folder.create(user_id: u1.id, topic: 'JavaScript', color: 'blue')
-f3 = Folder.create(user_id: u1.id, topic: 'React', color: 'blue')
+databases = ['MySQL', 'PostgreSQL', 'Oracle Database', 'IBM DB2']
+frameworks = ['Angular', 'Laravel', 'React', 'Ruby on Rails', 'Symfony']
+others = ['Design', 'Grid', 'Color']
 
-f4 = Folder.create(user_id: u2.id, topic: 'Rails', color: 'red')
-f5 = Folder.create(user_id: u2.id, topic: 'Sinatra', color: 'red')
+databases.each do |database|
+    Folder.create(
+    user_id: 1,
+    topic: database,
+    category: 'database'
+  )
+end
 
-f6 = Folder.create(user_id: u1.id, topic: 'Sinatra', color: 'red')
-f7 = Folder.create(user_id: u1.id, topic: 'Postgres', color: 'blue')
-f8 = Folder.create(user_id: u1.id, topic: 'Search Algorithms', color: 'gray')
+frameworks.each do |framework|
+    Folder.create(
+    user_id: 1,
+    topic: framework,
+    category: 'framework'
+  )
+end
 
-v1 = Video.create(folder_id: f1.id, title: Faker::Book.title, youtube: 'FBxVN7U1Qsk')
-v1 = Video.create(folder_id: f1.id, title: Faker::Book.title, youtube: 'aiXNKHKWlmY')
-v1 = Video.create(folder_id: f1.id, title: Faker::Book.title, youtube: 'MJUJ4wbFm_A')
+others.each do |other|
+    Folder.create(
+    user_id: 1,
+    topic: other,
+    category: 'other'
+  )
+end
 
-s1 = Snippet.create(folder_id: f1.id, title: 'Test Snippet', content: "<html><p>test</p></html>")
+7.times do |index|
+  Folder.create(
+    user_id: 1,
+    topic: Faker::ProgrammingLanguage.name,
+    category: 'language'
+  )
+end
 
-5.times do |index|
+150.times do |index|
   Note.create(
-    folder_id: f2.id,
+    folder_id: rand(1..19),
     title: Faker::Book.title,
     content: Faker::Lorem.paragraph
   )
 end
 
-5.times do |index|
-  Note.create(
-    folder_id: f1.id,
-    title: Faker::Book.title,
-    content: Faker::Lorem.paragraph
+150.times do |index|
+  Link.create(
+    folder_id: rand(1..19),
+    title: Faker::Company.name,
+    content: Faker::Internet.url
   )
 end

@@ -1,4 +1,4 @@
-   import React, { Component } from "react";
+import React, { Component } from "react";
 import FolderTile from "./FolderTile";
 import FolderListItem from "./FolderListItem";
 import { Link } from "react-router";
@@ -74,39 +74,100 @@ class FoldersContainer extends Component {
 
   render() {
     let viewClass = "nav-link";
-    let allClass = "nav-link active";
+    let allClass = viewClass;
     let otherClass = viewClass;
+    let languageClass = viewClass;
+    let frameworkClass = viewClass;
+    let databaseClass = viewClass;
     let folders = this.state.folders;
     let arrange = this.state.arrange;
     let arrangeIcon = "grid";
+    let view = this.state.view;
+
     if (arrange == "grid") {
       arrangeIcon = "fas fa-list";
     } else {
       arrangeIcon = "fas fa-th";
     }
 
+
+
+    if (view == "language") {
+      languageClass = `${viewClass} active`;
+    } else if (view == "framework") {
+      frameworkClass = `${viewClass} active`;
+    } else if (view == "database") {
+      databaseClass = `${viewClass} active`;
+    } else if (view == "other") {
+      otherClass = `${viewClass} active`;
+    } else if (view == "all" || view == "") {
+      allClass = `${viewClass} active`;
+    }
+
     let renderFolders = folders.map(folder => {
       let handleDelete = () => {
         this.handleFolderDelete(folder.id);
       };
-      if (arrange == "grid") {
+      if (arrange == "grid" && view == "all") {
         return (
           <FolderTile
             key={folder.id}
             id={folder.id}
             topic={folder.topic}
-            color={folder.color}
+            category={folder.category}
             handleDelete={handleDelete}
           />
         );
-      }
+      } else if (arrange == "grid" && view == "language" && folder.category == "language") {
+        return (
+          <FolderTile
+            key={folder.id}
+            id={folder.id}
+            topic={folder.topic}
+            category={folder.category}
+            handleDelete={handleDelete}
+          />
+        );
+      } else if (arrange == "grid" && view == "framework" && folder.category == "framework") {
+        return (
+          <FolderTile
+            key={folder.id}
+            id={folder.id}
+            topic={folder.topic}
+            category={folder.category}
+            handleDelete={handleDelete}
+          />
+        );
+      } else if (arrange == "grid" && view == "database" && folder.category == "database") {
+        return (
+          <FolderTile
+            key={folder.id}
+            id={folder.id}
+            topic={folder.topic}
+            category={folder.category}
+            handleDelete={handleDelete}
+          />
+        );
+      } else if (arrange == "grid" && view == "other" && folder.category == "other") {
+        return (
+          <FolderTile
+            key={folder.id}
+            id={folder.id}
+            topic={folder.topic}
+            category={folder.category}
+            handleDelete={handleDelete}
+          />
+        );
+      } 
+
+
       if (arrange == "list") {
         return (
           <FolderListItem
             key={folder.id}
             id={folder.id}
             topic={folder.topic}
-            color={folder.color}
+            category={folder.category}
             updated={folder.updated_at}
             handleDelete={handleDelete}
           />
@@ -123,43 +184,28 @@ class FoldersContainer extends Component {
               <div className="col-md-auto">
                 <ul className="nav nav-tabs">
                   <li className="nav-item">
-                    <a
-                      className={allClass}
-                      id="all"
-                      onClick={this.handleViewChange}>
-                      <i className="far fa-circle text-default" />
+                    <a className={allClass} id="all" onClick={this.handleViewChange}>
+                      All
                     </a>
                   </li>
                   <li className="nav-item">
-                    <a
-                      className={otherClass}
-                      id="notes"
-                      onClick={this.handleViewChange}>
-                      <i className="fas fa-circle text-default" />
+                    <a className={languageClass} id="language" onClick={this.handleViewChange}>
+                      Language
                     </a>
                   </li>
                   <li className="nav-item">
-                    <a
-                      className={otherClass}
-                      id="notes"
-                      onClick={this.handleViewChange}>
-                      <i className="fas fa-circle text-orange" />
+                    <a className={frameworkClass} id="framework" onClick={this.handleViewChange}>
+                      Framework
                     </a>
                   </li>
                   <li className="nav-item">
-                    <a
-                      className={otherClass}
-                      id="videos"
-                      onClick={this.handleViewChange}>
-                      <i className="fas fa-circle text-red" />
+                    <a className={databaseClass} id="database" onClick={this.handleViewChange}>
+                      Database
                     </a>
                   </li>
                   <li className="nav-item">
-                    <a
-                      className={otherClass}
-                      id="snippets"
-                      onClick={this.handleViewChange}>
-                      <i className="fas fa-circle text-green" />
+                    <a className={otherClass} id="other" onClick={this.handleViewChange}>
+                      Other
                     </a>
                   </li>
                 </ul>

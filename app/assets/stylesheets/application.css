@@ -85,11 +85,11 @@ a {
 
 a:hover,
 a:active {
-	color: var(--color-red)
+	color: var(--color-blue-dark)
 }
 
 a:focus {
-	color: var(--color-red-dark);
+	color: var(--color-blue-dark);
 	outline: 0
 }
 
@@ -315,17 +315,17 @@ ol {
 
 .gray,
 .default {
-	color: var(--color-gray);
 	background-color: var(--color-gray-light);
+	border: 1px solid var(--color-gray-medium);
 }
 
 .red {
-	color: var(--color-red);
+	border: 1px solid var(--color-red-medium);
 	background-color: var(--color-red-light);
 }
 
 .blue {
-	color: var(--color-blue);
+	border: 1px solid var(--color-blue-medium);
 	background-color: var(--color-blue-light);
 }
 
@@ -334,14 +334,14 @@ ol {
 	background-color: var(--color-green-light);
 }
 
-.yellow {
+.material.yellow {
 	background-color: var(--color-yellow-light);
-	color: var(--color-yellow);
+	border: 1px solid var(--color-yellow-medium);
 }
 
 .orange {
 	background-color: var(--color-orange-light);
-	color: var(--color-orange);
+	border: 1px solid var(--color-orange-medium);
 }
 
 
@@ -394,7 +394,7 @@ textarea {
 	color: #var(--color-gray);
 	background-color: #fff;
 	border: 1px solid #d2cfcf;
-	border-radius: 1px;
+	border-radius: 0.25rem;
 }
 
 input:not([type=submit]):not([type=file]):not([type=checkbox]):not([type=radio]):hover,
@@ -437,7 +437,7 @@ input[type=search] {
 	color: #var(--color-gray);
 	background-color: var(--color-gray-light);
 	border: none;
-	border-radius: 0;
+	border-radius: 0.25rem;
 }
 
 input.search::-webkit-input-placeholder {
@@ -469,7 +469,7 @@ select {
 	background-image: url("data:image/svg+xml;utf8,<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' width='24' height='24' viewBox='0 0 24 24'><path fill='#444' d='M7.406 7.828l4.594 4.594 4.594-4.594 1.406 1.406-6 6-6-6z'></path></svg>");
 	background-position: 100% 50%;
 	background-repeat: no-repeat;
-
+	border-radius: 0.25rem;
 	height: 3rem;
 }
 
@@ -556,13 +556,13 @@ header {
 }
 
 .logo {
-	color: var(--color-red);
+	color: var(--color-blue-dark);
 	font-size: 1.5rem;
 	font-weight: 700;
 }
 
 .logo:hover {
-	color: var(--color-red-dark)
+	color: var(--color-blue-medium)
 }
 
 .user-account {
@@ -671,7 +671,7 @@ header {
 
 .nav-tabs .nav-link.active,
 .nav-tabs .nav-item.show .nav-link {
-	color: var(--color-red);
+	color: var(--color-blue-dark);
 	background-color: #fff;
 	border-color: var(--color-gray-light) var(--color-gray-light) #fff;
 }

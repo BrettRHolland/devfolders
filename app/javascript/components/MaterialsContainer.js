@@ -4,6 +4,7 @@ import Video from "./Video";
 import Snippet from "./Snippet";
 import YouTubeSearch from "./YouTubeSearch";
 import SearchTab from "./SearchTab";
+import LinkItem from "./LinkItem";
 import { Link } from "react-router";
 
 class MaterialsContainer extends Component {
@@ -16,12 +17,15 @@ class MaterialsContainer extends Component {
       videosCount: 0,
       snippets: [],
       snippetsCount: 0,
+      links: [],
+      linksCount: 0,
       view: "all"
     };
     this.handleViewChange = this.handleViewChange.bind(this);
     this.deleteNote = this.deleteNote.bind(this);
     this.deleteVideo = this.deleteVideo.bind(this);
     this.deleteSnippet = this.deleteSnippet.bind(this);
+    this.deleteLink = this.deleteLink.bind(this);
     this.saveYouTubeVideo = this.saveYouTubeVideo.bind(this);
   }
 
@@ -45,7 +49,9 @@ class MaterialsContainer extends Component {
           snippets: body.snippets,
           snippetsCount: body.snippets_count,
           videos: body.videos,
-          videosCount: body.videos_count
+          videosCount: body.videos_count,
+          links: body.links,
+          linksCount: body.links_count
         });
       })
       .catch(error => console.error(`Error in fetch: ${error.message}`));
@@ -109,6 +115,32 @@ class MaterialsContainer extends Component {
       .catch(error => console.error(`Error in fetch: ${error.message}`));
   }
 
+  deleteLink(id) {
+    let folder_id = this.props.params.id;
+    fetch(`/api/v1/folders/${folder_id}/links/${id}`, {
+      method: "DELETE",
+      credentials: "same-origin",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json"
+      }
+    })
+      .then(response => {
+        if (response.ok) {
+          return response;
+        } else {
+          let errorMessage = `${response.status} (${response.statusText})`,
+            error = new Error(errorMessage);
+          throw error;
+        }
+      })
+      .then(response => response.json())
+      .then(body => {
+        this.setState({ notes: body.links });
+      })
+      .catch(error => console.error(`Error in fetch: ${error.message}`));
+  }
+
   deleteVideo(id) {
     let folder_id = this.props.params.id;
     fetch(`/api/v1/folders/${folder_id}/videos/${id}`, {
@@ -162,6 +194,8 @@ class MaterialsContainer extends Component {
   }
 
   render() {
+    let links = this.state.links;
+    let linksCount = this.state.linksCount;
     let notes = this.state.notes;
     let stackResults = this.state.stackResults;
     let snippets = this.state.snippets;
@@ -169,6 +203,7 @@ class MaterialsContainer extends Component {
     let view = this.state.view;
     let viewClass = "nav-link";
     let allClass = viewClass;
+    let linksClass = viewClass;
     let notesClass = viewClass;
     let videosClass = viewClass;
     let searchClass = viewClass;
@@ -180,7 +215,11 @@ class MaterialsContainer extends Component {
     let snippetsCount = this.state.snippetsCount;
     let videosCount = this.state.videosCount;
     let folder_id = this.props.params.id;
-    let totalCount = this.state.notesCount + this.state.snippetsCount + this.state.videosCount;
+    let totalCount =
+      this.state.notesCount +
+      this.state.snippetsCount +
+      this.state.videosCount +
+      this.state.linksCount;
 
     if (view == "notes") {
       notesClass = `${viewClass} active`;
@@ -188,14 +227,35 @@ class MaterialsContainer extends Component {
       videosClass = `${viewClass} active`;
     } else if (view == "snippets") {
       snippetsClass = `${viewClass} active`;
+    } else if (view == "links") {
+      linksClass = `${viewClass} active`;
     } else if (view == "search") {
       searchClass = `${viewClass} active`;
-      searchTab = <SearchTab saveYouTubeVideo={this.saveYouTubeVideo} folder_id={this.props.params.id} />;
+      searchTab = (
+        <SearchTab saveYouTubeVideo={this.saveYouTubeVideo} folder_id={this.props.params.id} />
+      );
     } else if (view == "search") {
       searchClass = `${viewClass} active`;
     } else if (view == "all" || view == "") {
       allClass = `${viewClass} active`;
     }
+
+    let showLinks = links.map(link => {
+      if (view == "all" || view == "links") {
+        let handleLinkDelete = () => {
+          this.deleteLink(linkitem.id);
+        };
+        return (
+          <LinkItem
+            key={link.id}
+            id={link.id}
+            title={link.title}
+            content={link.content}
+            handleDelete={handleLinkDelete}
+          />
+        );
+      }
+    });
 
     let showNotes = notes.map(note => {
       if (view == "all" || view == "notes") {
@@ -281,8 +341,9 @@ class MaterialsContainer extends Component {
                     </a>
                   </li>
                   <li className="nav-item">
-                    <a className={snippetsClass} id="snippets" onClick={this.handleViewChange}>
+                    <a className={linksClass} id="links" onClick={this.handleViewChange}>
                       Links
+                      <span className="badge badge-pill badge-primary">{linksCount}</span>
                     </a>
                   </li>
                   <li className="nav-item">
@@ -313,6 +374,10 @@ class MaterialsContainer extends Component {
         {/* Snippets */}
         <div className="container">
           <div className="video-columns">{showSnippets}</div>
+        </div>
+        {/* Links */}
+        <div className="container">
+          <div className="material-columns">{showLinks}</div>
         </div>
         {/* Search */}
         <div>{searchTab}</div>

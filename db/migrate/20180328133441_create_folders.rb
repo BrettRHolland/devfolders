@@ -3,7 +3,7 @@ class CreateFolders < ActiveRecord::Migration[5.1]
     create_table :folders do |t|
       t.integer :user_id, null: false
       t.string :topic, null: false
-      t.string :color, default: 'default'
+      t.string :category
 
       t.timestamps
     end

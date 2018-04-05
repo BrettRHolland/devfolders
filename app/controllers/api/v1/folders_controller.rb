@@ -16,7 +16,9 @@ class Api::V1::FoldersController < ApplicationController
 		@snippets_count = Snippet.where(folder_id: @folder.id).count
 		@videos = Video.where(folder_id: @folder.id)
 		@videos_count = Video.where(folder_id: @folder.id).count
-		render json: {notes: @notes, snippets: @snippets, videos: @videos, notes_count: @notes_count, videos_count: @videos_count, snippets_count: @snippets_count}
+		@links = Link.where(folder_id: @folder.id)
+		@links_count = Link.where(folder_id: @folder.id).count
+		render json: {notes: @notes, snippets: @snippets, videos: @videos, links: @links, notes_count: @notes_count, videos_count: @videos_count, snippets_count: @snippets_count, links_count: @links_count}
 	end
 
 	def create
@@ -27,7 +29,6 @@ class Api::V1::FoldersController < ApplicationController
 		if @folder.save
 			render json: { folder: @folder }
 		end
-
 	end
 
 	def destroy
@@ -42,6 +43,6 @@ class Api::V1::FoldersController < ApplicationController
 	private
 
 	def folder_params
-		params.require(:folder).permit(:topic, :color)
+		params.require(:folder).permit(:topic, :category)
 	end
 end

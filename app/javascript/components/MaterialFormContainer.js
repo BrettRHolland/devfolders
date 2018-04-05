@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { browserHistory } from "react-router";
 import NoteForm from "./NoteForm";
 import SnippetForm from "./SnippetForm";
+import LinkForm from "./LinkForm";
 import VideoForm from "./VideoForm";
 
 class MaterialFormContainer extends Component {
@@ -13,7 +14,8 @@ class MaterialFormContainer extends Component {
       title: "",
       content: "",
       youtube: "",
-      notes: ""
+      notes: "",
+      links: ""
     };
 
     this.handleCategorySelection = this.handleCategorySelection.bind(this);
@@ -23,6 +25,7 @@ class MaterialFormContainer extends Component {
     this.handleClear = this.handleClear.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.addNote = this.addNote.bind(this);
+    this.addLink = this.addLink.bind(this);
     this.addSnippet = this.addSnippet.bind(this);
     this.addVideo = this.addVideo.bind(this);
   }
@@ -41,7 +44,7 @@ class MaterialFormContainer extends Component {
 
   handleClear(event) {
     event.preventDefault();
-    this.setState({ title: "", content: "", youtube: "", notes: "" });
+    this.setState({ title: "", content: "", youtube: "", notes: "", links: "" });
   }
 
   handleSubmit(event) {
@@ -53,6 +56,14 @@ class MaterialFormContainer extends Component {
         content: this.state.content
       };
       this.addNote(formPayload);
+      this.handleClear(event);
+    } else if (this.state.category == "link") {
+      let formPayload = {
+        folder_id: this.props.params.id,
+        title: this.state.title,
+        content: this.state.content
+      };
+      this.addLink(formPayload);
       this.handleClear(event);
     } else if (this.state.category == "snippet") {
       let formPayload = {
@@ -79,6 +90,27 @@ class MaterialFormContainer extends Component {
 
   addNote(submission) {
     fetch(`/api/v1/folders/${submission.folder_id}/notes`, {
+      credentials: "same-origin",
+      method: "POST",
+      body: JSON.stringify(submission),
+      headers: { "Content-Type": "application/json" }
+    })
+      .then(response => {
+        if (response.ok) {
+          return response;
+        } else {
+          let errorMessage = `${response.status} (${response.statusText})`,
+            error = new Error(errorMessage);
+          throw error;
+        }
+      })
+      .then(response => response.json())
+      .then(body => browserHistory.push(`/folders/${submission.folder_id}`))
+      .catch(error => console.error(`Error in fetch: ${error.message}`));
+  }
+
+  addLink(submission) {
+    fetch(`/api/v1/folders/${submission.folder_id}/links`, {
       credentials: "same-origin",
       method: "POST",
       body: JSON.stringify(submission),
@@ -159,6 +191,14 @@ class MaterialFormContainer extends Component {
           handleContentChange={this.handleContentChange}
         />
       );
+    } else if (category == "link") {
+      formShow = (
+        <LinkForm
+          addLink={this.addLink}
+          handleTitleChange={this.handleTitleChange}
+          handleContentChange={this.handleContentChange}
+        />
+      );
     } else if (category == "video") {
       formShow = (
         <VideoForm
@@ -183,6 +223,7 @@ class MaterialFormContainer extends Component {
                   <option value="">What are you adding?</option>
                   <option value="note">Note</option>
                   <option value="video">Video</option>
+                  <option value="link">Link</option>
                   <option value="snippet">Snippet</option>
                 </select>
               </div>
