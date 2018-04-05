@@ -1,24 +1,14 @@
-# README
+# DEVFOLDERS
+Save collections of notes, videos, snippets, and links inside folders.
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Installation
+git clone https://github.com/BrettRHolland/devfolders.git
+cd devfolders
+bundle install
 
-Things you may want to cover:
+rails db:create
+rails db:migrate
+rails db:seed (to add test user data and accounts)
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## Usage
+rails server

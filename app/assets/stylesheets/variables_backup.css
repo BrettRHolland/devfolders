@@ -1,0 +1,35 @@
+:root {
+	/* colors */
+	--color-red: #e74b3c;
+	--color-red-light: #fdf3f2;
+	--color-red-dark: #c72818;
+
+	--color-blue: #3088bf;
+	--color-blue-light: #c9e2f2;
+	--color-blue-dark: #215c82;
+
+	--color-gray: #615b5b;
+	--color-gray-light: #ebeaea;
+	--color-gray-dark: #3e3a3a;
+
+	--color-green: #1fbf92;
+	--color-green-light: #b7f3e2;
+	--color-green-dark: #168565;
+
+	--color-yellow: #F0C609;
+	--color-yellow-light: #FFF2CE;
+	--color-yellow-medium: #FCDE5C;
+	--color-yellow-dark: #9e8206;
+
+	--color-orange: #DD731D;
+	--color-orange-light: #FFD5B3;
+	--color-orange-dark: #a15415;
+
+	/* spacing */
+	--spacing-small: 0.5rem;
+	--spacing-normal: 1rem;
+	--spacing-large: 2rem;
+
+	/* fonts */
+	--font-family-normal: 'Poppins', sans-serif;
+}

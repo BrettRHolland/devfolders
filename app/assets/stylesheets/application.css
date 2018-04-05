@@ -20,6 +20,7 @@
  *= require_self
  */
 
+
 /* base */
 
 html {
@@ -97,6 +98,7 @@ ol {
 	padding-left: 1.25rem;
 	margin: 0
 }
+
 
 
 
@@ -246,6 +248,7 @@ ol {
 
 
 
+
 /* alerts */
 
 .alert {
@@ -282,6 +285,34 @@ ol {
 	color: var(--color-orange);
 }
 
+.bg-gray,
+.bg-default {
+	color: var(--color-gray-light);
+}
+
+.bg-red {
+	color: var(--color-red-light);
+}
+
+.bg-blue {
+	color: var(--color-blue-light);
+}
+
+.bg-green {
+	color: var(--color-green-light);
+}
+
+.bg-yellow {
+	color: var(--color-yellow-light);
+}
+
+.bg-orange {
+	color: var(--color-orange-light);
+}
+
+
+
+
 .gray,
 .default {
 	color: var(--color-gray);
@@ -312,6 +343,7 @@ ol {
 	background-color: var(--color-orange-light);
 	color: var(--color-orange);
 }
+
 
 
 
@@ -455,6 +487,7 @@ select:active {
 
 
 
+
 /* text align */
 
 .text-left {
@@ -468,6 +501,7 @@ select:active {
 .text-center {
 	text-align: center !important;
 }
+
 
 
 

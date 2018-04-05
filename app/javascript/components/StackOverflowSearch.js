@@ -24,7 +24,7 @@ export default class StackOverflowSearch extends React.Component {
 
 	handleFetch(searchTerms) {
 		fetch(
-			`https://api.stackexchange.com/2.2/search/excerpts?order=desc&sort=activity&q=${searchTerms}&site=stackoverflow`
+			`https://api.stackexchange.com/2.2/search/excerpts?order=desc&sort=activity&q=${searchTerms}&accepted=True&site=stackoverflow`
 		)
 			.then(response => {
 				if (response.ok) {

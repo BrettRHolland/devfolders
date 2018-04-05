@@ -33,6 +33,7 @@
   -ms-flex: 1 1 auto;
   flex: 1 1 auto;
   padding: 1rem 2rem;
+  white-space: pre-wrap;
 }
 
 .material-title {

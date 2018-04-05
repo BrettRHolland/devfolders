@@ -14,6 +14,7 @@ const StackOverflowSearchResult = props => {
         <p className="material-text">{props.body}</p>
       </div>
       <div className="material-footer text-right">
+        <i class="fas fa-angle-double-down" />
         <i className="fas fa-plus" onClick="" />
       </div>
     </div>
