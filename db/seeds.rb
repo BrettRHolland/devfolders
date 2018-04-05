@@ -13,19 +13,27 @@ databases = ['MySQL', 'PostgreSQL', 'Oracle Database', 'IBM DB2']
 frameworks = ['Angular', 'Laravel', 'React', 'Ruby on Rails', 'Symfony']
 others = ['Design', 'Grid', 'Color']
 
-databases.each do |database|
-    Folder.create(
-    user_id: 1,
-    topic: database,
-    category: 'database'
-  )
-end
-
 frameworks.each do |framework|
     Folder.create(
     user_id: 1,
     topic: framework,
     category: 'framework'
+  )
+end
+
+7.times do |index|
+  Folder.create(
+    user_id: 1,
+    topic: Faker::ProgrammingLanguage.name,
+    category: 'language'
+  )
+end
+
+databases.each do |database|
+    Folder.create(
+    user_id: 1,
+    topic: database,
+    category: 'database'
   )
 end
 
@@ -37,13 +45,6 @@ others.each do |other|
   )
 end
 
-7.times do |index|
-  Folder.create(
-    user_id: 1,
-    topic: Faker::ProgrammingLanguage.name,
-    category: 'language'
-  )
-end
 
 150.times do |index|
   Note.create(
