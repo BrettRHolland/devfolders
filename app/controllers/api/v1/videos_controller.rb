@@ -15,15 +15,19 @@ class Api::V1::VideosController < ApplicationController
     @video = Video.new(video_params)
 
     if @video.save
-      render json: { video: @video }
+      @folder = Folder.find(params[:folder_id])
+      @videos_count = Video.where(folder_id: @folder.id).count
+      render json: {video: @video, videos_count: @videos_count}
     end
   end
 
   def destroy
     @deleted_video = Video.find(params[:id])
     @deleted_video.destroy
-    @videos = Video.where(folder_id: params[:folder_id])
-    render json: {videos: @videos}
+    @folder = Folder.find(params[:folder_id])
+    @videos = Video.where(folder_id: @folder.id)
+    @videos_count = Video.where(folder_id: @folder.id).count
+    render json: {videos: @videos, videos_count: @videos_count}
   end
 
   private

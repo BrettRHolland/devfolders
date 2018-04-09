@@ -60,13 +60,13 @@
 }
 
 .nav-pills .nav-link {
-  border-radius: 0.0625rem;
+  border-radius: 0.5rem;
 }
 
 .nav-pills .nav-link.active,
 .nav-pills .show > .nav-link {
-  color: var(--color-red);
-  background-color: var(--color-red-light);
+  color: var(--color-blue-dark);
+  background-color: var(--color-blue-light);
 }
 
 .nav-fill .nav-item {

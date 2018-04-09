@@ -39,8 +39,8 @@ export default class YouTubeSearch extends Component {
 
     return (
       <div>
-        <form onSubmit={this.onSubmit}>
-          <div className="row no-gutters">
+        <form onSubmit={this.onSubmit} className="margin-top-small">
+          <div className="row">
             <div className="col">
               <input
                 type="text"
@@ -68,4 +68,3 @@ export default class YouTubeSearch extends Component {
     );
   }
 }
-

@@ -9,8 +9,12 @@ class FoldersContainer extends Component {
     super(props);
     this.state = {
       folders: [],
+      languageCount: 0,
+      frameworkCount: 0,
+      databaseCount: 0,
+      otherCount: 0,
       arrange: "grid",
-      view: "all"
+      view: ""
     };
     this.handleArrangeChange = this.handleArrangeChange.bind(this);
     this.handleViewChange = this.handleViewChange.bind(this);
@@ -30,7 +34,13 @@ class FoldersContainer extends Component {
       })
       .then(response => response.json())
       .then(body => {
-        this.setState({ folders: body.folders });
+        this.setState({
+          folders: body.folders,
+          languageCount: body.language_count,
+          frameworkCount: body.framework_count,
+          databaseCount: body.database_count,
+          otherCount: body.other_count
+        });
       })
       .catch(error => console.error(`Error in fetch: ${error.message}`));
   }
@@ -67,7 +77,13 @@ class FoldersContainer extends Component {
       })
       .then(response => response.json())
       .then(body => {
-        this.setState({ folders: body.folders });
+        this.setState({
+          folders: body.folders,
+          languageCount: body.language_count,
+          frameworkCount: body.framework_count,
+          databaseCount: body.database_count,
+          otherCount: body.other_count
+        });
       })
       .catch(error => console.error(`Error in fetch: ${error.message}`));
   }
@@ -83,14 +99,21 @@ class FoldersContainer extends Component {
     let arrange = this.state.arrange;
     let arrangeIcon = "grid";
     let view = this.state.view;
+    let languageCount = this.state.languageCount;
+    let frameworkCount = this.state.frameworkCount;
+    let databaseCount = this.state.databaseCount;
+    let otherCount = this.state.otherCount;
+    let totalCount =
+      this.state.languageCount +
+      this.state.frameworkCount +
+      this.state.databaseCount +
+      this.state.otherCount;
 
     if (arrange == "grid") {
       arrangeIcon = "fas fa-list";
     } else {
       arrangeIcon = "fas fa-th";
     }
-
-
 
     if (view == "language") {
       languageClass = `${viewClass} active`;
@@ -108,7 +131,7 @@ class FoldersContainer extends Component {
       let handleDelete = () => {
         this.handleFolderDelete(folder.id);
       };
-      if (arrange == "grid" && view == "all") {
+      if (arrange == "grid" && view == "all" || view == "") {
         return (
           <FolderTile
             key={folder.id}
@@ -158,8 +181,7 @@ class FoldersContainer extends Component {
             handleDelete={handleDelete}
           />
         );
-      } 
-
+      }
 
       if (arrange == "list") {
         return (
@@ -186,26 +208,31 @@ class FoldersContainer extends Component {
                   <li className="nav-item">
                     <a className={allClass} id="all" onClick={this.handleViewChange}>
                       All
+                      <span className="badge badge-pill badge-primary">{totalCount}</span>
                     </a>
                   </li>
                   <li className="nav-item">
                     <a className={languageClass} id="language" onClick={this.handleViewChange}>
                       Language
+                      <span className="badge badge-pill badge-primary">{languageCount}</span>
                     </a>
                   </li>
                   <li className="nav-item">
                     <a className={frameworkClass} id="framework" onClick={this.handleViewChange}>
                       Framework
+                      <span className="badge badge-pill badge-primary">{frameworkCount}</span>
                     </a>
                   </li>
                   <li className="nav-item">
                     <a className={databaseClass} id="database" onClick={this.handleViewChange}>
                       Database
+                      <span className="badge badge-pill badge-primary">{databaseCount}</span>
                     </a>
                   </li>
                   <li className="nav-item">
                     <a className={otherClass} id="other" onClick={this.handleViewChange}>
                       Other
+                      <span className="badge badge-pill badge-primary">{otherCount}</span>
                     </a>
                   </li>
                 </ul>

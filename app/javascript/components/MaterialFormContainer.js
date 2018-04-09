@@ -220,7 +220,7 @@ class MaterialFormContainer extends Component {
                 <select
                   value={category}
                   onChange={this.handleCategorySelection}>
-                  <option value="">What are you adding?</option>
+                  <option value="">Select a material...</option>
                   <option value="note">Note</option>
                   <option value="video">Video</option>
                   <option value="link">Link</option>

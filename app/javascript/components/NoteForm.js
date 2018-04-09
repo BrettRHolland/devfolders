@@ -18,7 +18,7 @@ const NoteForm = props => {
         />
       </div>
       <div className="button-group">
-        <button className="button button-red" type="submit" value="Submit">
+        <button className="button button-blue" type="submit" value="Submit">
           Submit
         </button>
       </div>

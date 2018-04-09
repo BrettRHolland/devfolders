@@ -6,6 +6,7 @@ import YouTubeSearch from "./YouTubeSearch";
 import SearchTab from "./SearchTab";
 import LinkItem from "./LinkItem";
 import { Link } from "react-router";
+import { browserHistory } from "react-router";
 
 class MaterialsContainer extends Component {
   constructor(props) {
@@ -79,12 +80,9 @@ class MaterialsContainer extends Component {
       })
       .then(response => response.json())
       .then(body => {
-        let allVideos = this.state.videos;
-        allVideos.push(body.video);
-        this.setState({
-          videos: allVideos,
-          view: "videos"
-        });
+        let newVideos = this.state.videos;
+        newVideos.push(body.video);
+        this.setState({ videos: newVideos, view: 'videos', videosCount: body.videos_count });
       })
       .catch(error => console.error(`Error in fetch: ${error.message}`));
   }
@@ -110,7 +108,7 @@ class MaterialsContainer extends Component {
       })
       .then(response => response.json())
       .then(body => {
-        this.setState({ notes: body.notes });
+        this.setState({ notes: body.notes, notesCount: body.notes_count });
       })
       .catch(error => console.error(`Error in fetch: ${error.message}`));
   }
@@ -162,7 +160,7 @@ class MaterialsContainer extends Component {
       })
       .then(response => response.json())
       .then(body => {
-        this.setState({ videos: body.videos });
+        this.setState({ videos: body.videos, videosCount: body.videos_count });
       })
       .catch(error => console.error(`Error in fetch: ${error.message}`));
   }
@@ -241,7 +239,7 @@ class MaterialsContainer extends Component {
     }
 
     let showLinks = links.map(link => {
-      if (view == "all" || view == "links") {
+      if (view == "" || view == "all" || view == "links") {
         let handleLinkDelete = () => {
           this.deleteLink(linkitem.id);
         };
@@ -258,7 +256,7 @@ class MaterialsContainer extends Component {
     });
 
     let showNotes = notes.map(note => {
-      if (view == "all" || view == "notes") {
+      if (view == "" || view == "all" || view == "notes") {
         let handleNoteDelete = () => {
           this.deleteNote(note.id);
         };
@@ -275,7 +273,7 @@ class MaterialsContainer extends Component {
     });
 
     let showSnippets = snippets.map(snippet => {
-      if (view == "all" || view == "snippets") {
+      if (view == "" || view == "all" || view == "snippets") {
         let handleSnippetDelete = () => {
           this.deleteSnippet(snippet.id);
         };
@@ -295,7 +293,7 @@ class MaterialsContainer extends Component {
       return new Date(b.created_at) - new Date(a.created_at);
     });
     let showVideos = videos.map(video => {
-      if (view == "all" || view == "videos") {
+      if (view == "" || view == "all" || view == "videos") {
         let handleVideoDelete = () => {
           this.deleteVideo(video.id);
         };
@@ -326,24 +324,22 @@ class MaterialsContainer extends Component {
                   </li>
                   <li className="nav-item">
                     <a className={notesClass} id="notes" onClick={this.handleViewChange}>
-                      Notes <span className="badge badge-pill badge-primary">{notesCount}</span>
+                      Note <span className="badge badge-pill badge-primary">{notesCount}</span>
                     </a>
                   </li>
                   <li className="nav-item">
                     <a className={videosClass} id="videos" onClick={this.handleViewChange}>
-                      Videos <span className="badge badge-pill badge-primary">{videosCount}</span>
+                      Video <span className="badge badge-pill badge-primary">{videosCount}</span>
                     </a>
                   </li>
                   <li className="nav-item">
                     <a className={snippetsClass} id="snippets" onClick={this.handleViewChange}>
-                      Snippets{" "}
-                      <span className="badge badge-pill badge-primary">{snippetsCount}</span>
+                      Snippet <span className="badge badge-pill badge-primary">{snippetsCount}</span>
                     </a>
                   </li>
                   <li className="nav-item">
                     <a className={linksClass} id="links" onClick={this.handleViewChange}>
-                      Links
-                      <span className="badge badge-pill badge-primary">{linksCount}</span>
+                      Link <span className="badge badge-pill badge-primary">{linksCount}</span>
                     </a>
                   </li>
                   <li className="nav-item">
@@ -377,7 +373,7 @@ class MaterialsContainer extends Component {
         </div>
         {/* Links */}
         <div className="container">
-          <div className="material-columns">{showLinks}</div>
+          <div className="row">{showLinks}</div>
         </div>
         {/* Search */}
         <div>{searchTab}</div>

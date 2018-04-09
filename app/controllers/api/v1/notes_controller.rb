@@ -22,8 +22,10 @@ class Api::V1::NotesController < ApplicationController
   def destroy
     @deleted_note = Note.find(params[:id])
     @deleted_note.destroy
-    @notes = Note.where(folder_id: params[:folder_id])
-    render json: {notes: @notes}
+    @folder = Folder.find(params[:folder_id])
+    @notes = Note.where(folder_id: @folder.id)
+    @notes_count = Note.where(folder_id: @folder.id).count
+    render json: {notes: @notes, notes_count: @notes_count}
   end
 
   private

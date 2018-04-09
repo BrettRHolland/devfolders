@@ -6,13 +6,13 @@ class FolderFormContainer extends Component {
     super(props);
     this.state = {
       topic: "",
-      color: "default",
+      category: "",
       errors: {}
     };
     this.handleTopicChange = this.handleTopicChange.bind(this);
-    this.handleColorChange = this.handleColorChange.bind(this);
+    this.handleCategoryChange = this.handleCategoryChange.bind(this);
     this.validateTopic = this.validateTopic.bind(this);
-    this.validateColor = this.validateColor.bind(this);
+    this.validateCategory = this.validateCategory.bind(this);
     this.handleClear = this.handleClear.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.addNewFolder = this.addNewFolder.bind(this);
@@ -22,8 +22,8 @@ class FolderFormContainer extends Component {
     this.setState({ topic: event.target.value });
   }
 
-  handleColorChange(event) {
-    this.setState({ color: event.target.value });
+  handleCategoryChange(event) {
+    this.setState({ category: event.target.value });
   }
 
   validateTopic(topic) {
@@ -39,14 +39,14 @@ class FolderFormContainer extends Component {
     }
   }
 
-  validateColor(color) {
-    if (color === "" || color === " ") {
-      let newError = { color: "Color may not be blank." };
+  validateCategory(category) {
+    if (category === "" || category === " ") {
+      let newError = { category: "Category may not be blank." };
       this.setState({ errors: Object.assign(this.state.errors, newError) });
       return false;
     } else {
       let errorState = this.state.errors;
-      delete errorState.color;
+      delete errorState.category;
       this.setState({ errors: errorState });
       return true;
     }
@@ -54,18 +54,18 @@ class FolderFormContainer extends Component {
 
   handleClear(event) {
     event.preventDefault();
-    this.setState({ topic: "", color: "" });
+    this.setState({ topic: "", category: "" });
   }
 
   handleSubmit(event) {
     event.preventDefault();
     if (
       this.validateTopic(this.state.topic) &&
-      this.validateColor(this.state.color)
+      this.validateCategory(this.state.category)
     ) {
       let formPayload = {
         topic: this.state.topic,
-        color: this.state.color
+        category: this.state.category
       };
       this.addNewFolder(formPayload);
       this.handleClear(event);
@@ -124,17 +124,17 @@ class FolderFormContainer extends Component {
               </div>
 
               <div className="form-item">
-                <label>Color</label>
+                <label>Category</label>
                 <select
-                  value={this.state.color}
-                  onChange={this.handleColorChange}>
-                  <option value="default">Gray</option>
-                  <option value="blue" className="blue">
-                    Blue
+                  value={this.state.category}
+                  onChange={this.handleCategoryChange}>
+                  <option value="">Select a category...</option>
+                  <option value="language">Language</option>
+                  <option value="framework" className="blue">
+                    Framework
                   </option>
-                  <option value="green">Green</option>
-                  <option value="orange">Orange</option>
-                  <option value="red">Red</option>
+                  <option value="database">Database</option>
+                  <option value="other">Other</option>
                 </select>
               </div>
 
@@ -145,7 +145,7 @@ class FolderFormContainer extends Component {
                   Clear
                 </button>
                 <button
-                  className="button button-red"
+                  className="button button-blue"
                   type="submit"
                   value="Submit">
                   Submit

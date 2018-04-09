@@ -4,8 +4,12 @@ class Api::V1::FoldersController < ApplicationController
 
 	def index
 		@folders = Folder.where(user_id: current_user.id)
+		@language_count = Folder.where(category: 'language').count
+		@framework_count = Folder.where(category: 'framework').count
+		@database_count = Folder.where(category: 'database').count
+		@other_count = Folder.where(category: 'other').count
 		@user = User.find(current_user.id)
-		render json: {folders: @folders, user: @user}
+		render json: {folders: @folders, language_count: @language_count, framework_count: @framework_count, database_count: @database_count, other_count: @other_count}
 	end
 
 	def show
@@ -35,9 +39,13 @@ class Api::V1::FoldersController < ApplicationController
 		@user = User.find(current_user.id)
 		@deleted_folder = Folder.find(params[:id])
 		@deleted_folder.destroy
+
 		@folders = Folder.where(user_id: current_user.id)
-		@user = User.find(current_user.id)
-		render json: {folders: @folders, user: @user}
+		@language_count = Folder.where(category: 'language').count
+		@framework_count = Folder.where(category: 'framework').count
+		@database_count = Folder.where(category: 'database').count
+		@other_count = Folder.where(category: 'other').count
+		render json: {folders: @folders, language_count: @language_count, framework_count: @framework_count, database_count: @database_count, other_count: @other_count}
 	end
 
 	private

@@ -1,6 +1,6 @@
 :root {
-	/* colors */
 
+	/* colors */
 	--color-red: #e74b3c;
 	--color-red-light: #F9EFEF;
 	--color-red-medium: #DD9B9B;
@@ -25,11 +25,9 @@
 	--color-orange-light: #F6EAE3;
 	--color-orange-medium: #E1B9A4;
 	--color-orange-dark: #a15415;
-	/* spacing */
-	--spacing-small: 0.5rem;
-	--spacing-normal: 1rem;
-	--spacing-large: 2rem;
+
 	/* fonts */
 	--font-family-normal: 'Poppins', sans-serif;
 	--font-family-secondary: 'Montserrat', sans-serif;
+
 }

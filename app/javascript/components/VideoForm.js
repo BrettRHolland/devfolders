@@ -10,7 +10,7 @@ const VideoForm = props => {
       </div>
 
       <div className="form-item">
-        <label>Snippet</label>
+        <label>Video ID</label>
         <input
           type="text"
           name="youtube"
@@ -18,7 +18,7 @@ const VideoForm = props => {
         />
       </div>
       <div className="button-group">
-        <button className="button button-red" type="submit" value="Submit">
+        <button className="button button-blue" type="submit" value="Submit">
           Submit
         </button>
       </div>
