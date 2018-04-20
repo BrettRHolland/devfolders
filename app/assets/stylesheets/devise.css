@@ -12,7 +12,7 @@
 }
 
 .devise-photo-container {
-  background-image: url("splash.jpg");
+  background-image: url("https://s3.amazonaws.com/devfolders/splash.jpg");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -95,7 +95,7 @@ label.checkbox-label {
   border: none;
   color: #adb5bd;
   display: block;
-  height: 3.125rem;  
+  height: 3.125rem;
   line-height: 1.2;
   outline: none;
   overflow: visible;
@@ -103,26 +103,26 @@ label.checkbox-label {
 }
 
 .devise-field input[type=text] {
-  background: transparent;  
-  border-bottom: 2px solid #dbdbdb;    
+  background: transparent;
+  border-bottom: 2px solid #dbdbdb;
   font-size: 1.375rem;
 }
 
 .devise-field input[type=email] {
-  background: transparent;  
-  border-bottom: 2px solid #dbdbdb;    
+  background: transparent;
+  border-bottom: 2px solid #dbdbdb;
   font-size: 1.375rem;
 }
 
 .devise-field input[type=password] {
-  background: transparent;  
-  border-bottom: 2px solid #dbdbdb;    
+  background: transparent;
+  border-bottom: 2px solid #dbdbdb;
   font-size: 1.375rem;
 }
 
 .devise-field input[type=checkbox] {
-  background: transparent;  
-  border-bottom: 2px solid #dbdbdb;    
+  background: transparent;
+  border-bottom: 2px solid #dbdbdb;
   font-size: 1.375rem;
   display: inline-block;
   width: auto;
@@ -155,8 +155,8 @@ label.checkbox-label {
   .button:disabled {
     cursor: not-allowed;
     opacity: .4; }
-    
-    
+
+
     .button-default {
       color: #615b5b;
       background-color: #ebeaea; }
